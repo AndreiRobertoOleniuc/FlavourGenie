@@ -3,6 +3,9 @@
 This application is designed to generate recipes based on the ingredients you have in your kitchen. The application will take in a list of ingredients and output a list of recipes that can be made with those ingredients
 
 The Idea is to have a place where people can explore new recipes and try new things without having to go to the store to buy new ingredients. This application will help people use up the ingredients they have in their kitchen and reduce food waste.
+## Guidelines
+We will use Conventional Commit for our Commit Messages and Branch Naming 
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## Local Setup
 
@@ -21,7 +24,7 @@ Alternatively run via Spring Boot run command
 But change run config to use VM Options of
 ```
 -Dpebble.cache=false
-``` 
+```
 
 ## Project Structure
 In order to keep the Code Clean we will use following Structure to sector our Code
