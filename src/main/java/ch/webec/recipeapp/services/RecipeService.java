@@ -1,4 +1,4 @@
-package ch.webec.recipeapp.services.services;
+package ch.webec.recipeapp.services;
 
 import ch.webec.recipeapp.adapters.ChatCompletionAPI;
 import ch.webec.recipeapp.adapters.GCPCloudStorageAPI;
@@ -35,12 +35,16 @@ public class RecipeService {
         this.gcpCloudStorageAPI = gcpCloudStorageAPI;
     }
 
-    public Recipe generateRecipe(String[] ingredients){
+    public Recipe generateRecipe(String[] ingredients, boolean generateImage){
         ChatResponse chatResponse = generateRecipeText(ingredients);
-        var parsedChatResponse = toRecipe(chatResponse, null);
-        //String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
-        //String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI);
-        return toRecipe(chatResponse, null);
+        if(generateImage){
+            var parsedChatResponse = toRecipe(chatResponse, null);
+            String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
+            String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.recipeName());
+            return toRecipe(chatResponse, imageUrl);
+        }else{
+            return toRecipe(chatResponse, null);
+        }
     }
 
     public ChatResponse generateRecipeText(String[] ingredients){

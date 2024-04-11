@@ -45,6 +45,7 @@ In order to keep the Code Clean we will use following Structure to sector our Co
   POST /api/recipe
 ```
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `ingredients` | `string` | Comma seperated list of Ingredients |
+| Parameter       | Type      | Description                   |
+|:----------------|:----------|:------------------------------|
+| `ingredients`   | `string`  | Comma seperated list of Ingredients |
+| `generateImage` | `boolean` | Should an Image be generated  |
