@@ -38,9 +38,9 @@ public class RecipeService {
     public Recipe generateRecipe(String[] ingredients){
         ChatResponse chatResponse = generateRecipeText(ingredients);
         var parsedChatResponse = toRecipe(chatResponse, null);
-        String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
+        //String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
         //String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI);
-        return toRecipe(chatResponse, imageUrlOpenAI);
+        return toRecipe(chatResponse, null);
     }
 
     public ChatResponse generateRecipeText(String[] ingredients){
