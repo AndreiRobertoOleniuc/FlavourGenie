@@ -1,7 +1,6 @@
 package ch.webec.recipeapp.config;
 
-
-import ch.webec.recipeapp.models.OpenAI.Message;
+import ch.webec.recipeapp.models.OpenAI.Completion.Message;
 
 public class RecipePromptsConfig {
     public static Message getMessage() {
@@ -29,6 +28,10 @@ public class RecipePromptsConfig {
                 "}." +
                 "Remove ALL whitespaces from the JSON in the response. The JSON should be minified.";
         return new Message("system", systemPrompt + expectedJSON);
+    }
+
+    public static String getImagePrompt(){
+        return "You will get a description of a recipe then generate an image from it: \n: ";
     }
 
 }
