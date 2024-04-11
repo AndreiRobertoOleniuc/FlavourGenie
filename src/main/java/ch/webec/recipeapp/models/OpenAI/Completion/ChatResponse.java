@@ -1,4 +1,4 @@
-package ch.webec.recipeapp.models.OpenAI;
+package ch.webec.recipeapp.models.OpenAI.Completion;
 
 import java.util.List;
 

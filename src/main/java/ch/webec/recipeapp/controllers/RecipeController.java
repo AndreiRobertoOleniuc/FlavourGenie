@@ -17,6 +17,6 @@ public class RecipeController {
     @PostMapping("/api/recipes")
     public String createRecipe(@RequestBody RecipeRequest recipeRequest) {
         String[] ingredients = recipeRequest.ingredients().toArray(new String[0]);
-        return recipeService.generateRecipe(ingredients).choices().getFirst().message().content();
+        return recipeService.generateRecipeText(ingredients).choices().getFirst().message().content();
     }
 }

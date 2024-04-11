@@ -1,16 +1,16 @@
 package ch.webec.recipeapp.adapters;
 
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatRequest;
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatResponse;
+import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
+import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
-public class ChatCompletionAPI {
+public class ImageGenerationAPI {
 
     private final WebClient webClient;
 
-    public ChatCompletionAPI() {
+    public ImageGenerationAPI() {
         String openAIKey = System.getenv("OPENAI_API_KEY");
         this.webClient = WebClient.builder()
                 .baseUrl("https://api.openai.com/v1")
@@ -18,11 +18,11 @@ public class ChatCompletionAPI {
                 .build();
     }
 
-    public ChatResponse generateRecipe(ChatRequest chatRequest){
-        return this.webClient.post().uri("/chat/completions")
-                        .bodyValue(chatRequest)
+    public ImageGenerationResponse generateImage(ImageGenerationRequest request){
+        return this.webClient.post().uri("/v1/images/generations")
+                        .bodyValue(request)
                         .retrieve()
-                        .bodyToMono(ChatResponse.class)
+                        .bodyToMono(ImageGenerationResponse.class)
                         .block();
     }
 
