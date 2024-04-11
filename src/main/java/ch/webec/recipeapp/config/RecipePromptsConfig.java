@@ -31,7 +31,7 @@ public class RecipePromptsConfig {
     }
 
     public static String getImagePrompt(){
-        return "Given an description of a Recipe generate an Image: ";
+        return "You will get a description of a recipe then generate an image from it: \n: ";
     }
 
 }

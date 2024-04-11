@@ -54,7 +54,7 @@ public class RecipeService {
     }
 
     public String generateImage(String prompt){
-        var imageRequest = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel, prompt, imageSize));
+        var imageRequest = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel,  RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
         LoggerUtil.logInfo("Generated Image: ", prompt);
         return imageRequest.image().url();
     }

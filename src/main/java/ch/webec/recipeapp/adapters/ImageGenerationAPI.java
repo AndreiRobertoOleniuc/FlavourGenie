@@ -19,7 +19,7 @@ public class ImageGenerationAPI {
     }
 
     public ImageGenerationResponse generateImage(ImageGenerationRequest request){
-        return this.webClient.post().uri("/v1/images/generations")
+        return this.webClient.post().uri("/images/generations")
                         .bodyValue(request)
                         .retrieve()
                         .bodyToMono(ImageGenerationResponse.class)
