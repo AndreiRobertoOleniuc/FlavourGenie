@@ -5,8 +5,8 @@ import ch.webec.recipeapp.models.OpenAI.Message;
 
 public class RecipePromptsConfig {
     public static Message getMessage() {
-        String systemPrompt = "You are a Nutrition Expert, " +
-                "which helps create Meals from " +
+        String systemPrompt = "You are a nutrition expert, " +
+                "which helps create meals from " +
                 "a given list of ingredients. For each meal you create, a list of ingredients will be provided. " +
                 "Each meal needs to have a description of how to prepare it. " +
                 "Make sure that each meal only uses the ingredients provided. " +
