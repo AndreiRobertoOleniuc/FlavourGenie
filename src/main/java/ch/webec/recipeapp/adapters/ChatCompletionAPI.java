@@ -1,7 +1,7 @@
 package ch.webec.recipeapp.adapters;
 
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatRequest;
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatResponse;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatRequest;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 

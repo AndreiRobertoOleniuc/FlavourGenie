@@ -1,6 +1,7 @@
 package ch.webec.recipeapp.controllers;
 
 import ch.webec.recipeapp.models.CreateRecipeRequest.RecipeRequest;
+import ch.webec.recipeapp.models.Recipe;
 import ch.webec.recipeapp.services.services.RecipeService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +16,8 @@ public class RecipeController {
     }
 
     @PostMapping("/api/recipes")
-    public String createRecipe(@RequestBody RecipeRequest recipeRequest) {
+    public Recipe createRecipe(@RequestBody RecipeRequest recipeRequest) {
         String[] ingredients = recipeRequest.ingredients().toArray(new String[0]);
-        return recipeService.generateRecipeText(ingredients).choices().getFirst().message().content();
+        return recipeService.generateRecipe(ingredients);
     }
 }

@@ -8,6 +8,7 @@ public record Recipe(String recipeName,
                      String recipeDifficulty,
                      String cookingTime,
                      String recipeImageDescription,
+                     String instruction,
                      String recipeImage) {
     public record Ingredient(String name, String quantity, String unit) {
     }

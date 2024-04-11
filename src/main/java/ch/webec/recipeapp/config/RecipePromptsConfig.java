@@ -1,6 +1,6 @@
 package ch.webec.recipeapp.config;
 
-import ch.webec.recipeapp.models.OpenAI.Completion.Message;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
 
 public class RecipePromptsConfig {
     public static Message getMessage() {

@@ -1,12 +1,14 @@
 package ch.webec.recipeapp.services.services;
 
 import ch.webec.recipeapp.adapters.ChatCompletionAPI;
+import ch.webec.recipeapp.adapters.GCPCloudStorageAPI;
 import ch.webec.recipeapp.adapters.ImageGenerationAPI;
 import ch.webec.recipeapp.config.RecipePromptsConfig;
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatRequest;
-import ch.webec.recipeapp.models.OpenAI.Completion.ChatResponse;
-import ch.webec.recipeapp.models.OpenAI.Completion.Message;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatRequest;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatResponse;
+import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
+import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import ch.webec.recipeapp.models.Recipe;
 import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,18 +23,24 @@ public class RecipeService {
 
     private final ChatCompletionAPI chatCompletionAPI;
     private final ImageGenerationAPI imageGenerationAPI;
+    private final GCPCloudStorageAPI gcpCloudStorageAPI;
 
     private final String chatModel = "gpt-3.5-turbo";
     private final String imagesModel = "dall-e-3";
     private final String imageSize = "1024x1024";
 
-    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI) {
+    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI) {
         this.chatCompletionAPI = chatCompletionAPI;
         this.imageGenerationAPI = imageGenerationAPI;
+        this.gcpCloudStorageAPI = gcpCloudStorageAPI;
     }
 
     public Recipe generateRecipe(String[] ingredients){
-        return null;
+        ChatResponse chatResponse = generateRecipeText(ingredients);
+        var parsedChatResponse = toRecipe(chatResponse, null);
+        String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
+        //String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI);
+        return toRecipe(chatResponse, imageUrlOpenAI);
     }
 
     public ChatResponse generateRecipeText(String[] ingredients){
@@ -54,9 +62,9 @@ public class RecipeService {
     }
 
     public String generateImage(String prompt){
-        var imageRequest = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel,  RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
+        ImageGenerationResponse imageResponse = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel,  RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
         LoggerUtil.logInfo("Generated Image: ", prompt);
-        return imageRequest.image().url();
+        return imageResponse.data().getFirst().url();
     }
 
     public Recipe toRecipe(ChatResponse chatResponse, String imageUrl) {
@@ -71,13 +79,11 @@ public class RecipeService {
                     recipe.recipeDifficulty(),
                     recipe.cookingTime(),
                     recipe.recipeImageDescription(),
+                    recipe.instruction(),
                     imageUrl
             );
         } catch (Exception e) {
             throw new RuntimeException("Failed to convert JSON to Recipe", e);
         }
     }
-
-
-
 }
