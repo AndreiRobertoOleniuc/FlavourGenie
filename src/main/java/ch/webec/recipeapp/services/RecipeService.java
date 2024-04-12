@@ -10,6 +10,7 @@ import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import ch.webec.recipeapp.models.Recipe;
+import ch.webec.recipeapp.repository.RecipeRepository;
 import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -25,25 +26,32 @@ public class RecipeService {
     private final ImageGenerationAPI imageGenerationAPI;
     private final GCPCloudStorageAPI gcpCloudStorageAPI;
 
+    private final RecipeRepository recipeRepo;
+
     private final String chatModel = "gpt-3.5-turbo";
     private final String imagesModel = "dall-e-3";
     private final String imageSize = "1024x1024";
 
-    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI) {
+    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo) {
         this.chatCompletionAPI = chatCompletionAPI;
         this.imageGenerationAPI = imageGenerationAPI;
         this.gcpCloudStorageAPI = gcpCloudStorageAPI;
+        this.recipeRepo = recipeRepo;
     }
 
     public Recipe generateRecipe(String[] ingredients, boolean generateImage){
         ChatResponse chatResponse = generateRecipeText(ingredients);
         if(generateImage){
             var parsedChatResponse = toRecipe(chatResponse, null);
-            String imageUrlOpenAI = generateImage(parsedChatResponse.recipeImageDescription());
-            String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.recipeName());
-            return toRecipe(chatResponse, imageUrl);
+            String imageUrlOpenAI = generateImage(parsedChatResponse.getRecipeImageDescription());
+            String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.getRecipeName());
+            Recipe recipe = toRecipe(chatResponse, imageUrl);
+            recipeRepo.save(recipe);
+            return recipe;
         }else{
-            return toRecipe(chatResponse, null);
+            Recipe recipe = toRecipe(chatResponse, null);
+            recipeRepo.save(recipe);
+            return recipe;
         }
     }
 
@@ -56,7 +64,7 @@ public class RecipeService {
         List<Message> messages = Arrays.asList(systemMessage, userMessage);
         ChatRequest chatRequest = new ChatRequest(chatModel, messages);
         var recipeResponse = this.chatCompletionAPI.generateRecipe(chatRequest);
-        LoggerUtil.logInfo("Used Ingredients: {}", Arrays.toString(ingredients));
+        LoggerUtil.logInfo("Used Ingredient: {}", Arrays.toString(ingredients));
         LoggerUtil.logInfo("Used Tokens: Completion Token: {} , Prompt Token: {} , Total Token: {} ,",
                 recipeResponse.usage().completion_tokens(),
                 recipeResponse.usage().prompt_tokens(),
@@ -77,14 +85,14 @@ public class RecipeService {
         try {
             Recipe recipe = objectMapper.readValue(jsonContent, Recipe.class);
             return new Recipe(
-                    recipe.recipeName(),
-                    recipe.ingredients(),
-                    recipe.categories(),
-                    recipe.recipeDifficulty(),
-                    recipe.description(),
-                    recipe.cookingTime(),
-                    recipe.recipeImageDescription(),
-                    recipe.instruction(),
+                    recipe.getRecipeName(),
+                    recipe.getIngredients(),
+                    recipe.getCategories(),
+                    recipe.getRecipeDifficulty(),
+                    recipe.getDescription(),
+                    recipe.getCookingTime(),
+                    recipe.getRecipeImageDescription(),
+                    recipe.getInstruction(),
                     imageUrl
             );
         } catch (Exception e) {
