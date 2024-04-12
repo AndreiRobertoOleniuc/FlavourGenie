@@ -1,16 +1,78 @@
 package ch.webec.recipeapp.models;
 
+import jakarta.persistence.*;
+import org.checkerframework.checker.units.qual.Length;
+
 import java.util.List;
 
-public record Recipe(String recipeName,
-                     List<Ingredient> ingredients,
-                     List<String> categories,
-                     String recipeDifficulty,
-                     String description,
-                     String cookingTime,
-                     String recipeImageDescription,
-                     String instruction,
-                     String recipeImage) {
-    public record Ingredient(String name, String quantity, String unit) {
+@Entity
+public class Recipe {
+    @Id
+    @GeneratedValue
+    private Long id; // assuming there is an ID field for the entity
+
+    private String recipeName;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Ingredient> ingredients;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Category> categories;
+    private String recipeDifficulty;
+    private String description;
+    private String cookingTime;
+    private String recipeImageDescription;
+    @Column(length = 1000)
+    private String instruction;
+    private String recipeImage;
+
+    public Recipe(String recipeName, List<Ingredient> ingredients, List<Category> categories,
+                  String recipeDifficulty, String description, String cookingTime,
+                  String recipeImageDescription, String instruction, String recipeImage) {
+        this.recipeName = recipeName;
+        this.ingredients = ingredients;
+        this.categories = categories;
+        this.recipeDifficulty = recipeDifficulty;
+        this.description = description;
+        this.cookingTime = cookingTime;
+        this.recipeImageDescription = recipeImageDescription;
+        this.instruction = instruction;
+        this.recipeImage = recipeImage;
+    }
+
+    protected Recipe(){}
+
+    public String getRecipeName() {
+        return recipeName;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public String getRecipeDifficulty() {
+        return recipeDifficulty;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCookingTime() {
+        return cookingTime;
+    }
+
+    public String getRecipeImageDescription() {
+        return recipeImageDescription;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public String getRecipeImage() {
+        return recipeImage;
     }
 }
