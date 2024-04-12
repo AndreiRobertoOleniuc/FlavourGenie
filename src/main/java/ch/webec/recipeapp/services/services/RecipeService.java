@@ -47,7 +47,7 @@ public class RecipeService {
         Message systemMessage = RecipePromptsConfig.getMessage();
         String result = Arrays.stream(ingredients)
                 .collect(Collectors.joining(",", "[", "]"));
-        Message userMessage = new Message("user", "I have the following ingredients at Home, what could I cook with these: " + result);
+        Message userMessage = new Message("user", "I have the following ingredients at home, what could I cook with these: " + result);
 
         List<Message> messages = Arrays.asList(systemMessage, userMessage);
         ChatRequest chatRequest = new ChatRequest(chatModel, messages);
@@ -77,6 +77,7 @@ public class RecipeService {
                     recipe.ingredients(),
                     recipe.categories(),
                     recipe.recipeDifficulty(),
+                    recipe.description(),
                     recipe.cookingTime(),
                     recipe.recipeImageDescription(),
                     recipe.instruction(),

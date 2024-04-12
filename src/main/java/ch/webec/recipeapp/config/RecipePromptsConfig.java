@@ -22,8 +22,9 @@ public class RecipePromptsConfig {
                 " ]," +
                 "\\\"categories\\\": [list of categories this meal belongs to]," +
                 "\\\"recipeDifficulty\\\": string, // easy, medium, hard" +
+                "\\\"description\\\": string, // a short description of the recipe" +
                 "\\\"cookingTime\\\": string," +
-                "\\\"recipeImageDescription\\\": string," +
+                "\\\"recipeImageDescription\\\": string, // Only use the ingredients that are mentioned" +
                 "\\\"instruction\\\": string" +
                 "}." +
                 "Remove ALL whitespaces from the JSON in the response. The JSON should be minified.";
