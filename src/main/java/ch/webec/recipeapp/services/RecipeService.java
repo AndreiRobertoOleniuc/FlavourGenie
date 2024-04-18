@@ -39,6 +39,10 @@ public class RecipeService {
         this.recipeRepo = recipeRepo;
     }
 
+    public List<Recipe> getAllRecipes(){
+        return recipeRepo.findAll();
+    }
+
     public Recipe generateRecipe(String[] ingredients, boolean generateImage){
         ChatResponse chatResponse = generateRecipeText(ingredients);
         if(generateImage){

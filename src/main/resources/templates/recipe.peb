@@ -1,13 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+{# @pebvariable name="recipes" type="ch.webec.recipeapp.models.Recipe" #}
 
-</body>
-</html>
+{% extends "shared/layout" %}
+    {% block title %}Recipe{% endblock %}
+
+    {% block content %}
+        <div class="greeting">
+            <h2>Hi, Andrei!</h2>
+            <p>Ready to cook ?</p>
+        </div>
+        <div class="recipes">
+            <h2>Recipes</h2>
+            <ul>
+                {% for recipe in recipes %}
+                   <p>{{ recipe.recipeName }}</p>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}
