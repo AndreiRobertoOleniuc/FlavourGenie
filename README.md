@@ -13,6 +13,12 @@ In order to run this application locally, you will need to have the following:
 * JDK 21
 * Maven
 * OpenAI API Key in env (variable `OPENAI_API_KEY`)
+* Google OAuth Client ID in env (file `application-local.properties`)
+* Google OAuth Client Secret in env (variable `application-local.properties`)
+
+In order to set these variables copy the `application-loca-template.properties` file to `application-local.properties` and fill in the values
+
+```properties
 
 Running the projects
 ```zsh
@@ -25,6 +31,7 @@ But change run config to use VM Options of
 ```
 -Dpebble.cache=false
 ```
+And also use local Active Profile to use the secret env variable located in application-local.properties
 
 ## Project Structure
 In order to keep the Code Clean we will use following Structure to sector our Code

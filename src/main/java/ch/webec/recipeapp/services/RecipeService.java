@@ -99,4 +99,8 @@ public class RecipeService {
             throw new RuntimeException("Failed to convert JSON to Recipe", e);
         }
     }
+
+    public List<Recipe> getRecipe() {
+        return recipeRepo.findAll();
+    }
 }
