@@ -36,7 +36,8 @@ public class SecurityConfig{
         };
 
         return http.authorizeHttpRequests(auth ->
-                    auth.anyRequest().authenticated()
+                    auth.requestMatchers("/api/**").permitAll()
+                            .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo
