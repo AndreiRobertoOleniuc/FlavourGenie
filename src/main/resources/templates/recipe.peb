@@ -1,4 +1,4 @@
-{# @pebvariable name="recipes" type="ch.webec.recipeapp.models.Recipe" #}
+{# @pebvariable name="recipes" type="java.util.List<ch.webec.recipeapp.models.Recipe>" #}
 
 {% extends "shared/layout" %}
     {% block title %}Recipe{% endblock %}

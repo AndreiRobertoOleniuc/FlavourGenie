@@ -8,22 +8,11 @@ body{
     font-family: "Raleway", sans-serif;
 }
 
-.greeting{
-    color:white;
+.container{
+    width: 100vw;
+    height: 100vh;
 }
 
-.greeting p, h2{
-    margin: 0;
-}
+.navigation{
 
-.greeting p{
-    font-weight: 300;
-}
-.greeting h2{
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-.recipes{
-    color: white;
 }

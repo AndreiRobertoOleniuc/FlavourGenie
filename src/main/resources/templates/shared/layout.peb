@@ -1,3 +1,4 @@
+{% import "shared/nav" %}
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -10,10 +11,7 @@
 </head>
 <div id="container">
         <header>
-            <nav>
-                <ul>
-                </ul>
-            </nav>
+            {{ nav() }}
         </header>
         <main>
                 {% block content %}

@@ -1,0 +1,21 @@
+{% macro nav() %}
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a href="/create">
+                    Create
+                </a>
+            </li>
+            <li>
+                <a href="/create">
+                    Recipes
+                </a>
+            </li>
+        </ul>
+        <div class="profile">
+            <a href="/profile">
+                Profile
+            </a>
+        </div>
+    </nav>
+{%  endmacro %}
