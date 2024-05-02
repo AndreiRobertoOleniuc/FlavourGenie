@@ -11,13 +11,12 @@ body{
 }
 
 main{
-    width: calc(100% - 125px);
+    width: calc(100% - 200px);
 }
-
 
 .navigation{
     height: 100vh;
-    width: 125px;
+    width: 200px;
     background-color: #242222;
     display: flex;
     flex-direction: column;
@@ -36,13 +35,18 @@ main{
 .endpoints li{
     width: 100%;
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .endpoints li a{
-    width: 100%;
+    width: 70%;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
 }
 
@@ -85,4 +89,8 @@ main{
     margin-bottom: 15px;
     border-radius: 100%;
     width: 70px;
+}
+
+.active{
+    background-color: rgba(255, 166, 33, 0.85);
 }

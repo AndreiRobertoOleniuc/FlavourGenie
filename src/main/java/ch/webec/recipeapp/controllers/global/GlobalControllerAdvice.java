@@ -21,7 +21,7 @@ public class GlobalControllerAdvice {
         if (authentication.getPrincipal() instanceof OidcUser) {
             OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
             User user = userRepository.findByEmail(oidcUser.getEmail());
-            model.addAttribute("user_picture", user.getPicture());
+            model.addAttribute("user", user);
         }
     }
 }
