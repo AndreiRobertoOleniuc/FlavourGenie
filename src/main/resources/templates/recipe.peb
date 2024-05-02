@@ -1,0 +1,19 @@
+{# @pebvariable name="recipes" type="java.util.List<ch.webec.recipeapp.models.Recipe>" #}
+
+{% extends "shared/layout" %}
+    {% block title %}Recipe{% endblock %}
+
+    {% block content %}
+        <div class="greeting">
+            <h2>Hi, Andrei!</h2>
+            <p>Ready to cook ?</p>
+        </div>
+        <div class="recipes">
+            <h2>Recipes</h2>
+            <ul>
+                {% for recipe in recipes %}
+                   <p>{{ recipe.recipeName }}</p>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}

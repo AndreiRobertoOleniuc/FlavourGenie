@@ -1,4 +1,4 @@
-package ch.webec.recipeapp.controllers;
+package ch.webec.recipeapp.controllers.Rest;
 
 import ch.webec.recipeapp.models.CreateRecipeRequest.RecipeRequest;
 import ch.webec.recipeapp.models.Recipe;

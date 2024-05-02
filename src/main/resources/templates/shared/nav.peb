@@ -1,0 +1,31 @@
+{% macro nav(user_picture, path) %}
+    <nav class="navigation">
+        <ul class="endpoints">
+            <li>
+                <a href="/create">
+                    <i class="material-icons">add</i>
+                    Create
+                </a>
+            </li>
+            <li >
+                <a href="/recipe">
+                    <i class="material-icons">menu_book</i>
+                    Recipes
+                </a>
+            </li>
+            <li >
+                <a href="/">
+                    <i class="material-icons">info</i>
+                    About
+                </a>
+            </li>
+        </ul>
+        <div class="profile">
+            <img src="{{ user_picture }}" alt="Profile Picture">
+            <a href="/profile">
+                <i class="material-icons">person</i>
+                Profile
+            </a>
+        </div>
+    </nav>
+{%  endmacro %}

@@ -1,0 +1,20 @@
+{% import "shared/nav" %}
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{ href("/style.css") }}">
+    <title>{% block title %}Title{% endblock %}</title>
+</head>
+<body>
+    {{ nav(user_picture,request.servletPath) }}
+    <main>
+                {% block content %}
+                {% endblock %}
+        </main>
+</body>
+</html>
