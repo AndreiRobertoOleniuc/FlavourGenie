@@ -1,0 +1,19 @@
+{% extends "shared/layout" %}
+    {% block title %}Create Recipe{% endblock %}
+    {% block content %}
+        <div class="creation">
+            <h1>Create</h1>
+            <p>What ingredients do you have today?</p>
+            <div class="enterIngredient">
+                <div class="input-icon">
+                    <i class="material-icons">add</i>
+                    <input type="text" placeholder="Add ingredient">
+                </div>
+            </div>
+            <div class="generate">
+                <button class="generate-btn">Generate Recipe</button>
+            </div>
+        </div>
+
+    {% endblock%}
+{% set user_picture = user_picture %}

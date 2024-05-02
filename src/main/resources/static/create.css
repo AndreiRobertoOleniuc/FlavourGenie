@@ -1,0 +1,57 @@
+.creation {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px;
+}
+
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid #E4DFCE;
+    border-radius: 5px;
+    height: 40px;
+    width: 500px;
+    padding-left: 40px;
+}
+
+input::placeholder {
+    font-family: "Raleway", sans-serif;
+    color: #E8E8E8;
+}
+
+.creation .enterIngredient .input-icon i {
+    position: absolute;
+    left: 10px;
+    color: #E4DFCE;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.generate {
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.generate-btn {
+    width: 227px;
+    height: 48px;
+    font-family: "Raleway", sans-serif;
+    background-color: #FFA621;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: auto;
+}
