@@ -1,0 +1,20 @@
+    {% extends "shared/layout" %}
+        {% block title %}Create Recipe{% endblock %}
+        {% block content %}
+        <form class="creation" method="post" action="/create">
+            <h1>Create</h1>
+            <p>What ingredients do you have today?</p>
+            <div class="enterIngredient">
+                <div class="input-icon">
+                    <i class="material-icons" id="add-icon">add</i>
+                    <input type="text" id="ingredient-input" placeholder="Add ingredient">
+                </div>
+                <div id="chips-container" class="chips"></div>
+                <input type="hidden" id="ingredient-list" name="ingredients" value="">
+            </div>
+            <div class="generate">
+                <button class="generate-btn" type="submit">Generate Recipe</button>
+            </div>
+        </form>
+        {% endblock%}
+    {% set user_picture = user_picture %}
