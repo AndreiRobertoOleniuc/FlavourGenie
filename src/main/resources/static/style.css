@@ -90,3 +90,7 @@ main{
     border-radius: 100%;
     width: 70px;
 }
+
+.active{
+    background-color: rgba(255, 166, 33, 0.85);
+}

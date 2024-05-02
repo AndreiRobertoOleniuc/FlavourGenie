@@ -39,7 +39,7 @@
     height:150px;
     background-color: rgba(89, 82, 71, 0.8);
     margin-right: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -51,7 +51,7 @@
 }
 
 .recipeInfo{
-    margin-top: -25px;
+    margin-top: -50px;
 }
 
 .recipes .recipeCard .recipeInfo h3{
@@ -75,6 +75,7 @@
     color:#CBCBCB;
     font-size: 14px;
     justify-content: center;
+    align-items: center;
 }
 
 .recipeMeta .separator{
