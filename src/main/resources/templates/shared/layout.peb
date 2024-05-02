@@ -12,7 +12,7 @@
     <title>{% block title %}Title{% endblock %}</title>
 </head>
 <body>
-    {{ nav(user_picture,request.servletPath) }}
+    {{ nav(user,request.servletPath) }}
     <main>
                 {% block content %}
                 {% endblock %}

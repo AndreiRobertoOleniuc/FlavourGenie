@@ -31,5 +31,5 @@
             </div>
         </div>
     {% endblock %}
-{% set user_picture = user_picture %}
+{% set user = user %}
 

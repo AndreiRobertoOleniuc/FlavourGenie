@@ -1,4 +1,4 @@
-{% macro nav(user_picture, path) %}
+{% macro nav(user, path) %}
     <nav class="navigation">
         <ul class="endpoints">
             <li>
@@ -21,7 +21,7 @@
             </li>
         </ul>
         <div class="profile">
-            <img src="{{ user_picture }}" alt="Profile Picture">
+            <img src="{{ user.picture }}" alt="Profile Picture">
             <a href="/profile">
                 <i class="material-icons">person</i>
                 Profile

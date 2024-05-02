@@ -3,4 +3,4 @@
 {% block content %}
     <h1>Recipes</h1>
 {% endblock%}
-{% set user_picture = user_picture %}
+{% set user = user %}
