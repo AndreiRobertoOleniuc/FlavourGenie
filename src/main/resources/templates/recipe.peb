@@ -4,17 +4,26 @@
     {% block title %}Recipe{% endblock %}
 
     {% block content %}
-        <div class="greeting">
-            <h2>Hi, Andrei!</h2>
-            <p>Ready to cook ?</p>
-        </div>
-        <div class="recipes">
-            <h2>Recipes</h2>
-            <ul>
-                {% for recipe in recipes %}
-                   <p>{{ recipe.recipeName }}</p>
-                {% endfor %}
-            </ul>
+        <div class="recipeOverview">
+            <div class="greeting">
+                <h2>Hi, Andrei!</h2>
+                <p>Ready to cook ?</p>
+            </div>
+            <div class="recipes">
+                <h2>Recipes</h2>
+                <ul>
+                        {% for recipe in recipes %}
+                        <li>
+                            <div class="recipeCard">
+                                <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}">
+                                <div class="recipeInfo">
+                                    <h3>{{ recipe.recipeName }}</h3>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                </ul>
+            </div>
         </div>
     {% endblock %}
 {% set user_picture = user_picture %}
