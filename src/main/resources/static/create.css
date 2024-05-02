@@ -12,18 +12,20 @@
     align-items: center;
 }
 
-input {
+#ingredient-input {
     background-color: transparent;
     border: 1px solid #E4DFCE;
+    color: white;
     border-radius: 5px;
+    font-family: "Raleway", sans-serif;
     height: 40px;
     width: 500px;
     padding-left: 40px;
 }
 
-input::placeholder {
+#ingredient-input::placeholder {
     font-family: "Raleway", sans-serif;
-    color: #E8E8E8;
+    color: rgba(232, 232, 232, 0.6);
 }
 
 .creation .enterIngredient .input-icon i {
@@ -31,6 +33,7 @@ input::placeholder {
     left: 10px;
     color: #E4DFCE;
     top: 50%;
+    cursor: pointer;
     transform: translateY(-50%);
 }
 
@@ -54,4 +57,28 @@ input::placeholder {
     font-size: 16px;
     cursor: pointer;
     margin: auto;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 12px;
+    background-color: #E4DFCE;
+    border-radius: 4px;
+    color: #000000;
+    margin-right: 20px;
+}
+
+.chip .close {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#ingredients{
+    display: none;
 }

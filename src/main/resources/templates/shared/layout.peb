@@ -17,5 +17,6 @@
                 {% block content %}
                 {% endblock %}
     </main>
+    <script src={{ href("/inputIngredient.js")}}></script>
 </body>
 </html>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
+
 @Controller
 public class RecipeWebController {
 
@@ -30,8 +32,10 @@ public class RecipeWebController {
     }
 
     @PostMapping("/create")
-    public String createRecipe(@RequestParam @NotBlank String[] ingredients){
-        recipeService.generateRecipe(ingredients, true);
+    public String createRecipe(@RequestParam @NotBlank String ingredients){
+        String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
+        System.out.println(Arrays.toString(ingredientArray));
+        recipeService.generateRecipe(ingredientArray, true);
         return "recipe";
     }
 
