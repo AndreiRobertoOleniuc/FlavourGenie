@@ -17,3 +17,5 @@
             </ul>
         </div>
     {% endblock %}
+{% set user_picture = user_picture %}
+
