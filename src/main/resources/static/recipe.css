@@ -1,5 +1,4 @@
 .recipeOverview{
-    height: 100%;
     display: flex;
     flex-direction: column;
     padding: 30px 50px;
@@ -37,7 +36,7 @@
 }
 .recipeCard{
     width: 150px;
-    height:135px;
+    height:150px;
     background-color: rgba(89, 82, 71, 0.8);
     margin-right: 20px;
     margin-bottom: 50px;
@@ -68,4 +67,20 @@
     border-radius: 100%;
     margin-bottom: 10px;
     transform: translateY(-50px);
+}
+
+.recipeMeta{
+    display: flex;
+    flex-direction: row;
+    color:#CBCBCB;
+    font-size: 14px;
+    justify-content: center;
+}
+
+.recipeMeta .separator{
+    height: 16px;
+    width: 1px;
+    background-color: #CBCBCB;
+    margin-left: 5px;
+    margin-right: 5px;
 }

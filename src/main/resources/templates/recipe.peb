@@ -18,6 +18,11 @@
                                 <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}">
                                 <div class="recipeInfo">
                                     <h3>{{ recipe.recipeName }}</h3>
+                                    <div class="recipeMeta">
+                                        <p>{{ recipe.cookingTime }}</p>
+                                        <div class="separator"></div>
+                                        <p>{{ recipe.recipeDifficulty }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </li>

@@ -2,19 +2,19 @@
     <nav class="navigation">
         <ul class="endpoints">
             <li>
-                <a href="/create">
+                <a href="/create" class="{{ path == "/create" ? "active" : "" }}">
                     <i class="material-icons">add</i>
                     Create
                 </a>
             </li>
             <li >
-                <a href="/recipe">
+                <a href="/recipe" class="{{ path == "/recipe" ? "active" : "" }}">
                     <i class="material-icons">menu_book</i>
                     Recipes
                 </a>
             </li>
             <li >
-                <a href="/">
+                <a href="/" class="{{ path == "/" ? "active" : "" }}">
                     <i class="material-icons">info</i>
                     About
                 </a>
