@@ -88,17 +88,5 @@ main{
 .profile img{
     margin-bottom: 15px;
     border-radius: 100%;
-    width: 50px;
-}
-
-h1, h2,h3, p {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    vertical-align: baseline;
-}
-
-
-.active{
-    background-color: #FFA621;
+    width: 70px;
 }

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ href("/recipe.css") }}">
     <link rel="stylesheet" href="{{ href("/style.css") }}">
+    <link rel="stylesheet" href="{{ href("/create.css") }}">
     <title>{% block title %}Title{% endblock %}</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
     <main>
                 {% block content %}
                 {% endblock %}
-        </main>
+    </main>
+    <script src={{ href("/inputIngredient.js")}}></script>
 </body>
 </html>
