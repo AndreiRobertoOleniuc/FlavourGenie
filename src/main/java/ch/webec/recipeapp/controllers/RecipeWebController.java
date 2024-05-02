@@ -1,9 +1,12 @@
 package ch.webec.recipeapp.controllers;
 
 import ch.webec.recipeapp.services.RecipeService;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RecipeWebController {
@@ -20,4 +23,16 @@ public class RecipeWebController {
         model.addAttribute("recipes", recipes);
         return "recipe";
     }
+
+    @GetMapping("/create")
+    public String createRecipe(){
+        return "create";
+    }
+
+    @PostMapping("/create")
+    public String createRecipe(@RequestParam @NotBlank String[] ingredients){
+        recipeService.generateRecipe(ingredients, true);
+        return "recipe";
+    }
+
 }
