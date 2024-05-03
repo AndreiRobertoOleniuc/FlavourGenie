@@ -6,7 +6,7 @@
     {% block content %}
         <div class="recipeOverview">
             <div class="greeting">
-                <h2>Hi, Andrei!</h2>
+                <h2>Hi, {{ user.firstName }}!</h2>
                 <p>Ready to cook ?</p>
             </div>
             <div class="recipes">
