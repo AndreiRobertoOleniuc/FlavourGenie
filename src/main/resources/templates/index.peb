@@ -1,6 +1,6 @@
 {% extends "shared/layout" %}
 {% block title %}Recipe App{% endblock %}
 {% block content %}
-    <h1>Recipes</h1>
+    <h1 style="color: white">Recipes</h1>
 {% endblock%}
 {% set user = user %}

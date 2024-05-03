@@ -2,7 +2,7 @@
     color: white;
     display: flex;
     flex-direction: column;
-    padding: 50px;
+    padding: 30px 50px;
 }
 
 .input-icon {
@@ -36,14 +36,6 @@
     transform: translateY(-50%);
 }
 
-.generate {
-    position: absolute;
-    width: 100%;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
 
 .generate-btn {
     width: 227px;
@@ -61,7 +53,8 @@
 .chips {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 35px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .chip {
