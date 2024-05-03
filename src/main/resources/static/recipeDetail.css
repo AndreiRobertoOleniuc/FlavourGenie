@@ -17,7 +17,6 @@
     background-color: rgba(89, 82, 71, 0.8);
     padding: 15px 20px;
     border-radius:5px;
-    width: fit-content;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -59,4 +58,87 @@
     padding: 5px 10px;
     border-radius: 5px;
     margin-right: 5px;
+}
+
+
+.recipeDetail .section-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.recipeDetail .section-header > span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.recipeDetail .section-header-line{
+    height:1px;
+    background-color: #CBCBCB;
+    margin-top: 5px;
+}
+.recipeDetail #ingredients-button{
+    background-color:#2E2B28;
+    border: 0;
+    align-self: flex-end;
+    cursor: pointer;
+    color:white;
+    width: fit-content;
+}
+
+.recipeDetail #ingredients-button i{
+    transition: transform 250ms ease-in-out;
+}
+
+.recipeDetail #ingredients-button .rotate{
+    transform: rotate(180deg);
+}
+
+.recipeDetail #instruction-button{
+    background-color:#2E2B28;
+    border: 0;
+    align-self: flex-end;
+    cursor: pointer;
+    color:white;
+    width: fit-content;
+}
+
+.recipeDetail #instruction-button i{
+    transition: transform 250ms ease-in-out;
+}
+
+.recipeDetail #instruction-button .rotate{
+    transform: rotate(180deg);
+}
+
+
+.recipeDetail #ingredientContent {
+    height: auto;
+    overflow: hidden;
+    transition: height 250ms ease-in-out;
+}
+
+.recipeDetail #instructionContent {
+    height: auto;
+    overflow: hidden;
+    transition: height 250ms ease-in-out;
+}
+
+.recipeDetail .close {
+    height: 0 !important;
+}
+
+.recipeDetail #ingredientContent ul{
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    height: inherit;
+    flex-direction: row;
+}
+
+.recipeDetail #ingredientContent ul li{
+    margin-right: 20px;
 }

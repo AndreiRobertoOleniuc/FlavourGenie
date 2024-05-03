@@ -36,9 +36,8 @@ public class RecipeWebController {
     @PostMapping("/create")
     public RedirectView createRecipe(@RequestParam @NotBlank String ingredients){
         String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
-        System.out.println(Arrays.toString(ingredientArray));
-        recipeService.generateRecipe(ingredientArray, true);
-        return new RedirectView("/recipe");
+        var recipe = recipeService.generateRecipe(ingredientArray, true);
+        return new RedirectView("/recipe/" + recipe.getId());
     }
 
     @GetMapping("/recipe/{id}")

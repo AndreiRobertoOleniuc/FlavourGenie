@@ -22,6 +22,33 @@
                 </div>
             </div>
         </div>
+
+        <div class="ingredients">
+            <div class="section-header">
+                <span>Ingredients</span>
+                <button id="ingredients-button"><i class="material-icons">expand_more</i></button>
+            </div>
+            <div class="section-header-line"></div>
+            <div id="ingredientContent">
+                <ul>
+                        {% for ingredient in recipe.getIngredients %}
+                        <li>{{ ingredient.name }} {{ ingredient.quantity }} {{ ingredient.unit }}</li>
+                        {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="instruction">
+            <div class="section-header">
+                <span>Instructions</span>
+                <button id="instruction-button"><i class="material-icons">expand_more</i></button>
+            </div>
+            <div class="section-header-line"></div>
+            <div id="instructionContent">
+                <p>{{ recipe.description }}</p>
+                <p>{{ recipe.instruction }}</p>
+            </div>
+        </div>
     </div>
+    <script src="{{ href("/recipeDetail.js") }}"></script>
     {% endblock %}
 {% set user = user %}
