@@ -44,6 +44,10 @@ public class Recipe {
         return recipeName;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public List<Ingredient> getIngredients() {
         return ingredients;
     }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -38,6 +39,13 @@ public class RecipeWebController {
         System.out.println(Arrays.toString(ingredientArray));
         recipeService.generateRecipe(ingredientArray, true);
         return new RedirectView("/recipe");
+    }
+
+    @GetMapping("/recipe/{id}")
+    public String recipe(Model model, @PathVariable int id){
+        var recipe = recipeService.getRecipe(id);
+        model.addAttribute("recipe", recipe);
+        return "recipeDetail";
     }
 
 }

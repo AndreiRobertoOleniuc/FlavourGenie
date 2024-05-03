@@ -16,5 +16,6 @@
                 <button class="generate-btn" type="submit">Generate Recipe</button>
             </div>
         </form>
+        <script src={{ href("/inputIngredient.js")}}></script>
         {% endblock%}
     {% set user_picture = user_picture %}

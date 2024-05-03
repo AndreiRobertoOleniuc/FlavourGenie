@@ -107,4 +107,8 @@ public class RecipeService {
     public List<Recipe> getRecipe() {
         return recipeRepo.findAll();
     }
+
+    public Recipe getRecipe(int id) {
+        return recipeRepo.findById(id).orElseThrow();
+    }
 }

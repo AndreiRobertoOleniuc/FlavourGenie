@@ -94,3 +94,7 @@ main{
 .active{
     background-color: rgba(255, 166, 33, 0.85);
 }
+a{
+    color: white;
+    text-decoration: none;
+}

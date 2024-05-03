@@ -14,7 +14,7 @@
                 <ul>
                         {% for recipe in recipes %}
                         <li>
-                            <div class="recipeCard">
+                            <a class="recipeCard" href="{{ '/recipe/' + recipe.id  }}">
                                 <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}">
                                 <div class="recipeInfo">
                                     <h3>{{ recipe.recipeName }}</h3>
@@ -24,7 +24,7 @@
                                         <p>{{ recipe.recipeDifficulty }}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </li>
                         {% endfor %}
                 </ul>

@@ -1,0 +1,62 @@
+.recipeDetail{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+    color:white;
+}
+
+.recipeDetail > h1{
+    font-size:34px;
+    margin-bottom: 10px;
+}
+
+.infoCard{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    background-color: rgba(89, 82, 71, 0.8);
+    padding: 15px 20px;
+    border-radius:5px;
+    width: fit-content;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.infoCard .recipeImage{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    margin-right: 20px;
+}
+
+.infoCard .metaInfo{
+    display: flex;
+    flex-direction: column;
+}
+
+.infoCard .metaInfo .cookingTimeAndDifficulty{
+    display: flex;
+    flex-direction: row;
+    color:#CBCBCB;
+    font-size: 14px;
+    align-items: center;
+}
+
+.infoCard .metaInfo .cookingTimeAndDifficulty .separator{
+    height: 16px;
+    width: 1px;
+    background-color: #CBCBCB;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.infoCard .metaInfo .categories{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.infoCard .metaInfo  .categories .category-chip{
+    background-color: #FFA621;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
