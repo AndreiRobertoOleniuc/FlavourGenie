@@ -49,6 +49,6 @@
             </div>
         </div>
     </div>
-    <script src="{{ href("/recipeDetail.js") }}"></script>
+    <script src="{{ href("/js/recipeDetail.js") }}"></script>
     {% endblock %}
 {% set user = user %}
