@@ -10,8 +10,12 @@ body{
     flex-direction: row;
 }
 
-main{
+.with-navbar{
     width: calc(100% - 200px);
+}
+
+.no-navbar{
+    width: 100%;
 }
 
 .navigation{
@@ -94,7 +98,7 @@ main{
 .active{
     background-color: rgba(255, 166, 33, 0.85);
 }
-a{
+nav a{
     color: white;
     text-decoration: none;
 }

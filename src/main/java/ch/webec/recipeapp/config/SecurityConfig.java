@@ -73,7 +73,7 @@ public class SecurityConfig{
 //                        .failureForwardUrl("/login?error=true")
 //                )
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login").permitAll()
+                        .loginPage("/login").permitAll().defaultSuccessUrl("/recipe")
                         .userInfoEndpoint(userInfo -> userInfo
                                 .oidcUserService(oidcUserService)
 //                                .userService(githubUserService) // For OAuth2 providers

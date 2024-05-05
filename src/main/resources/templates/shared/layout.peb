@@ -21,7 +21,7 @@
     {% if request.servletPath != "/login" %}
     {{ nav(user,request.servletPath) }}
     {% endif %}
-    <main>
+    <main class="{{ request.servletPath == "/login" ? "no-navbar" : "with-navbar" }}">
                 {% block content %}
                 {% endblock %}
     </main>
