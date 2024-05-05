@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
+</head>
+<body>
+<h1>Register</h1>
+<form action="{{ href("/register") }}" method="post">
+    <p>
+        <label for="firstName">Firstname</label>
+        <input type="text" name="firstName" id="firstName" required>
+    </p>
+    <p>
+        <label for="lastName">Lastname</label>
+        <input type="text" name="lastName" id="lastName" required>
+    </p>
+    <p>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required>
+    </p>
+    <p>
+        <button type="submit" class="delete">Register</button>
+        <a class="button" href="/">Back</a>
+    </p>
+    <input type="hidden"
+           name="{{ request.getAttribute("_csrf").parameterName }}"
+           value="{{ request.getAttribute("_csrf").token }}">
+</form>
+</body>
+</html>
