@@ -61,8 +61,8 @@ public class SecurityConfig{
         return http.authorizeHttpRequests(req ->
                         req.requestMatchers("/api/**").permitAll()
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
-                        .requestMatchers("/", "/css/**", "/img/**", "/js/**").permitAll()
+//                        .requestMatchers("/register").permitAll()
+                        .requestMatchers( "/css/**", "/img/**", "/js/**").permitAll()
                                 .anyRequest().authenticated()
                 )
 //                .formLogin(login -> login

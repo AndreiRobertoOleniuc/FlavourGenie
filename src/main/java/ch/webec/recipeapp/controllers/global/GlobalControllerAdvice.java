@@ -26,7 +26,7 @@ public class GlobalControllerAdvice {
         String uri = request.getRequestURI();
 
         // Skip advice for /login and other public routes
-        if (uri.equals("/login") || uri.equals("/register") || uri.equals("/")) {
+        if (uri.equals("/login") || uri.equals("/register")) {
             return;
         }
 

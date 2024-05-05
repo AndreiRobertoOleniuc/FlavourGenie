@@ -8,7 +8,7 @@
     <title>Register</title>
 </head>
 <body>
-<h1>Register</h1>
+<h1>Register | FlavorGenie</h1>
 <form action="{{ href("/register") }}" method="post">
     <p>
         <label for="firstName">Firstname</label>

@@ -1,6 +1,9 @@
 {# @pebvariable name="recipe" type="ch.webec.recipeapp.models.Recipe" #}
     {% extends "shared/layout" %}
-    {% block title %}{{ recipe.recipeName }}{% endblock %}
+    {% block css %}
+    <link rel="stylesheet" href="{{ href("/css/recipeDetail.css") }}">
+    {% endblock %}
+    {% block title %}{{ recipe.recipeName }} | FlavorGenie{% endblock %}
     {% block content %}
     <div class="recipeDetail">
         <h1>Good choice!</h1>
