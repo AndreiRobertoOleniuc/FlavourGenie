@@ -1,5 +1,5 @@
 {% extends "shared/layout" %}
-{% block title %}Recipe App{% endblock %}
+{% block title %}FlavorGenie{% endblock %}
 {% block content %}
     <h1 style="color: white">Recipes</h1>
 {% endblock%}

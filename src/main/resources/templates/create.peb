@@ -1,5 +1,8 @@
     {% extends "shared/layout" %}
-        {% block title %}Create Recipe{% endblock %}
+        {% block css %}
+        <link rel="stylesheet" href="{{ href("/css/create.css") }}">
+        {% endblock %}
+        {% block title %}Create Recipe | FlavorGenie{% endblock %}
         {% block content %}
         <form class="creation" method="post" action="/create">
             <h1>Create</h1>
@@ -16,6 +19,6 @@
                 <button class="generate-btn" type="submit">Generate Recipe</button>
             </div>
         </form>
-        <script src={{ href("/inputIngredient.js")}}></script>
+        <script src={{ href("/js/inputIngredient.js")}}></script>
         {% endblock%}
     {% set user_picture = user_picture %}

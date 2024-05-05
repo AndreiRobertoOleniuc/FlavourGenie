@@ -1,6 +1,9 @@
 {# @pebvariable name="recipe" type="ch.webec.recipeapp.models.Recipe" #}
     {% extends "shared/layout" %}
-    {% block title %}{{ recipe.recipeName }}{% endblock %}
+    {% block css %}
+    <link rel="stylesheet" href="{{ href("/css/recipeDetail.css") }}">
+    {% endblock %}
+    {% block title %}{{ recipe.recipeName }} | FlavorGenie{% endblock %}
     {% block content %}
     <div class="recipeDetail">
         <h1>Good choice!</h1>
@@ -49,6 +52,6 @@
             </div>
         </div>
     </div>
-    <script src="{{ href("/recipeDetail.js") }}"></script>
+    <script src="{{ href("/js/recipeDetail.js") }}"></script>
     {% endblock %}
 {% set user = user %}
