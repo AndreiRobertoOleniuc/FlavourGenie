@@ -5,6 +5,27 @@
     padding: 30px 50px;
 }
 
+.logout-link {
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.logout-link i.material-icons {
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
 .profilePic {
     display: flex;
     flex-direction: row;
@@ -16,6 +37,11 @@
     margin-right: 20px;
     border-radius: 100%;
     width: 70px;
+}
+
+.profileName p {
+    font-size: 17px;
+    color: #f5f5f5;
 }
 
 .save {

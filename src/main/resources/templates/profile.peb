@@ -6,11 +6,16 @@
         {% block content %}
         <form class="setting" method="post" action="/profile">
             <h1>Settings</h1>
-            <div class="profilePic">
-                <img src="{{ user.picture }}" alt="Profile Picture">
-                <div class="profileName">
-                    <p>{{ user.firstName }} {{ user.lastName }}</p>
+            <div class="profile-header">
+                <div class="profilePic">
+                    <img src="{{ user.picture }}" alt="Profile Picture">
+                    <div class="profileName">
+                        <p>{{ user.firstName }} {{ user.lastName }}</p>
+                    </div>
                 </div>
+                <a class="logout-link" href="/logout">
+                    <i class="material-icons">logout</i> Logout
+                </a>
             </div>
             <div class="forms">
                 <div class="form-group">
