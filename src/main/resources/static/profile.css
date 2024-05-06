@@ -18,8 +18,9 @@
     width: 70px;
 }
 
-.save{
+.save {
     display: flex;
+    justify-content: flex-end;
 }
 
 .save-btn {
@@ -32,10 +33,7 @@
     border-radius: 7px;
     font-size: 16px;
     cursor: pointer;
-    position: absolute;
-    margin: auto;
-    bottom: 120px;
-    right: 140px;
+    margin-right: 7rem;
 }
 
 .profileName p{
@@ -75,3 +73,10 @@ label {
     margin-top: 30px;
 }
 
+.delete-btn{
+    color: #d00000;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
