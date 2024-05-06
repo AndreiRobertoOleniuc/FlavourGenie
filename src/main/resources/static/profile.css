@@ -1,19 +1,19 @@
-.setting{
+.setting {
     color: white;
     display: flex;
     flex-direction: column;
     padding: 30px 50px;
 }
 
-.profilePic{
+.profilePic {
     display: flex;
-    flex-direction: row; /* Change this from column to row */
-    align-items: center; /* Add this to vertically center the items */
+    flex-direction: row;
+    align-items: center;
     margin-top: 30px;
 }
 
-.profilePic img{
-    margin-right: 20px; /* Add this line */
+.profilePic img {
+    margin-right: 20px;
     border-radius: 100%;
     width: 70px;
 }
@@ -36,8 +36,28 @@
     margin-right: 7rem;
 }
 
-.profileName p{
-    font-size:17px;
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete-btn {
+    font-family: "Raleway", sans-serif;
+    background-color: transparent;
+    color: #ee1111;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 25px;
+}
+
+.delete-btn:hover{
+    color: white;
+}
+
+.profileName p {
+    font-size: 17px;
     color: #f5f5f5;
 }
 
@@ -69,14 +89,6 @@ label {
     font-weight: normal;
 }
 
-.forms{
+.forms {
     margin-top: 30px;
-}
-
-.delete-btn{
-    color: #d00000;
-    background: transparent;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
 }
