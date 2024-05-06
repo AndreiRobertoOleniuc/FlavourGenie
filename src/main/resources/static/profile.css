@@ -33,12 +33,12 @@
     border-radius: 7px;
     font-size: 16px;
     cursor: pointer;
-    margin-right: 7rem;
+    margin-right: 2rem;
 }
 
 .button-group {
     display: flex;
-    justify-content: flex-end;
+    margin-top: 2rem;
 }
 
 .delete-btn {

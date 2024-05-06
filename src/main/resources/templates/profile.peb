@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="button-group">
-                <button class="delete-btn" form="delete-form" type="submit">Delete User</button>
                 <button class="save-btn" type="submit">Save Changes</button>
+                <button class="delete-btn" form="delete-form" type="submit">Delete User</button>
             </div>
         </form>
         <form id="delete-form" method="post" action="/profile-delete" style="display: none;"></form>
