@@ -1,0 +1,77 @@
+.setting{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+}
+
+.profilePic{
+    display: flex;
+    flex-direction: row; /* Change this from column to row */
+    align-items: center; /* Add this to vertically center the items */
+    margin-top: 30px;
+}
+
+.profilePic img{
+    margin-right: 20px; /* Add this line */
+    border-radius: 100%;
+    width: 70px;
+}
+
+.save{
+    display: flex;
+}
+
+.save-btn {
+    width: 227px;
+    height: 48px;
+    font-family: "Raleway", sans-serif;
+    background-color: #FFA621;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    margin: auto;
+    bottom: 120px;
+    right: 140px;
+}
+
+.profileName p{
+    font-size:17px;
+    color: #f5f5f5;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+input[type="text"], input[type="email"] {
+    width: 400px;
+    padding: 8px;
+    height: 42px;
+    font-family: "Raleway", sans-serif;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: white;
+}
+
+input[type="text"]:focus, input[type="email"]:focus {
+    border-color: #FFA621;
+    outline: none;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+.forms{
+    margin-top: 30px;
+}
+

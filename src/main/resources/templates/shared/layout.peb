@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ href("/create.css") }}">
     <link rel="stylesheet" href="{{ href("/login.css") }}">
     <link rel="stylesheet" href="{{ href("/recipeDetail.css") }}">
+    <link rel="stylesheet" href="{{ href("/profile.css") }}">
+
     <title>{% block title %}Title{% endblock %}</title>
 </head>
 <body>

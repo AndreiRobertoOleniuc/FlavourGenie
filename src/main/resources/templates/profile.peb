@@ -1,0 +1,40 @@
+    {% extends "shared/layout" %}
+        {% block title %}Setting{% endblock %}
+        {% block content %}
+        <form class="setting" method="post" action="/profile">
+            <h1>Settings</h1>
+            <div class="profilePic">
+                <img src="{{ user.picture }}" alt="Profile Picture">
+                <div class="profileName">
+                    <p>{{ user.firstName }} {{ user.lastName }}</p>
+                </div>
+            </div>
+            <div class="forms">
+                <form>
+                    <div class="form-group">
+                        <label for="firstname">Firstname</label>
+                        <input type="text" id="firstname" name="firstname" value="{{ user.firstName }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Lastname</label>
+                        <input type="text" id="lastname" name="lastname" value="{{ user.lastName }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="{{ user.email }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="apiKey">API Key</label>
+                        <input type="text" id="apiKey" name="apiKey">
+                    </div>
+                </form>
+            </div>
+            <div class="delete">
+                <button class="delete-btn" type="submit">Delete User</button>
+            </div>
+            <div class="save">
+                <button class="save-btn" type="submit">Save Changes</button>
+            </div>
+        </form>
+        {% endblock%}
+    {% set user_picture = user_picture %}
