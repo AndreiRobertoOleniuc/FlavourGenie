@@ -25,14 +25,12 @@
                     </div>
                     <div class="form-group">
                         <label for="apiKey">API Key</label>
-                        <input type="text" id="apiKey" name="apiKey">
+                        <input type="text" id="apiKey" name="apiKey" disabled>
                     </div>
                 </form>
             </div>
-            <div class="delete">
+            <div class="button-group">
                 <button class="delete-btn" type="submit">Delete User</button>
-            </div>
-            <div class="save">
                 <button class="save-btn" type="submit">Save Changes</button>
             </div>
         </form>
