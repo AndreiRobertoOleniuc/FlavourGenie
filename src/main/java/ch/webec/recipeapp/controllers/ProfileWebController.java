@@ -8,7 +8,6 @@ public class ProfileWebController {
 
     @GetMapping("/profile")
     public String profile(){
-
         return "profile";
     }
 
