@@ -1,0 +1,41 @@
+    {% extends "shared/layout" %}
+        {% block css %}
+        <link rel="stylesheet" href="{{ href("/css/profile.css") }}">
+        {% endblock %}
+        {% block title %}Setting{% endblock %}
+        {% block content %}
+        <form class="setting" method="post" action="/profile">
+            <h1>Settings</h1>
+            <div class="profile-header">
+                <div class="profilePic">
+                    <img src="{{ user.picture }}" alt="Profile Picture">
+                    <div class="profileName">
+                        <p>{{ user.firstName }} {{ user.lastName }}</p>
+                    </div>
+                </div>
+                <a class="logout-link" href="/logout">
+                    <i class="material-icons">logout</i> Logout
+                </a>
+            </div>
+            <div class="forms">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <span>{{ user.email }}</span>
+                </div>
+                <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" id="firstname" name="firstname" value="{{ user.firstName }}">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" id="lastname" name="lastname" value="{{ user.lastName }}">
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="save-btn" type="submit">Save Changes</button>
+                <button class="delete-btn" form="delete-form" type="submit">Delete User</button>
+            </div>
+        </form>
+        <form id="delete-form" method="post" action="/profile-delete" style="display: none;"></form>
+        {% endblock%}
+    {% set user_picture = user_picture %}
