@@ -10,7 +10,6 @@
                 </div>
             </div>
             <div class="forms">
-                <form>
                     <div class="form-group">
                         <label for="firstname">Firstname</label>
                         <input type="text" id="firstname" name="firstname" value="{{ user.firstName }}">
@@ -21,14 +20,15 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="{{ user.email }}" disabled>
+                        <span>{{ user.email }}</span>
                     </div>
-                </form>
             </div>
             <div class="button-group">
-                <button class="delete-btn" type="submit">Delete User</button>
                 <button class="save-btn" type="submit">Save Changes</button>
             </div>
         </form>
+            <form method="post"  action="/profile-delete">
+                <button class="delete-btn" type="submit">Delete User</button>
+            </form>
         {% endblock%}
     {% set user_picture = user_picture %}
