@@ -10,25 +10,24 @@
                 </div>
             </div>
             <div class="forms">
-                    <div class="form-group">
-                        <label for="firstname">Firstname</label>
-                        <input type="text" id="firstname" name="firstname" value="{{ user.firstName }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Lastname</label>
-                        <input type="text" id="lastname" name="lastname" value="{{ user.lastName }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <span>{{ user.email }}</span>
-                    </div>
+                <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" id="firstname" name="firstname" value="{{ user.firstName }}">
+                </div>
+                <div class="form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" id="lastname" name="lastname" value="{{ user.lastName }}">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <span>{{ user.email }}</span>
+                </div>
             </div>
             <div class="button-group">
+                <button class="delete-btn" form="delete-form" type="submit">Delete User</button>
                 <button class="save-btn" type="submit">Save Changes</button>
             </div>
         </form>
-            <form method="post"  action="/profile-delete">
-                <button class="delete-btn" type="submit">Delete User</button>
-            </form>
+        <form id="delete-form" method="post" action="/profile-delete" style="display: none;"></form>
         {% endblock%}
     {% set user_picture = user_picture %}
