@@ -11,7 +11,7 @@ body{
 }
 
 .with-navbar{
-    width: calc(100% - 200px);
+    width: calc(100% - 150px);
 }
 
 .no-navbar{
@@ -20,7 +20,7 @@ body{
 
 .navigation{
     height: 100vh;
-    width: 200px;
+    width: 150px;
     background-color: #242222;
     display: flex;
     flex-direction: column;
@@ -92,7 +92,7 @@ body{
 .profile img{
     margin-bottom: 15px;
     border-radius: 100%;
-    width: 70px;
+    width: 45px;
 }
 
 .active{

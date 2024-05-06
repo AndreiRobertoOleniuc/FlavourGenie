@@ -23,10 +23,12 @@ public class Recipe {
     @Column(length = 1000)
     private String instruction;
     private String recipeImage;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Feedback> feedbacks;
 
     public Recipe(String recipeName, List<Ingredient> ingredients, List<Category> categories,
                   String recipeDifficulty, String description, String cookingTime,
-                  String recipeImageDescription, String instruction, String recipeImage) {
+                  String recipeImageDescription, String instruction, String recipeImage, List<Feedback> feedbacks) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -36,6 +38,7 @@ public class Recipe {
         this.recipeImageDescription = recipeImageDescription;
         this.instruction = instruction;
         this.recipeImage = recipeImage;
+        this.feedbacks = feedbacks;
     }
 
     protected Recipe(){}
@@ -78,5 +81,13 @@ public class Recipe {
 
     public String getRecipeImage() {
         return recipeImage;
+    }
+
+    public List<Feedback> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void addFeedback(Feedback feedback) {
+        feedbacks.add(feedback);
     }
 }

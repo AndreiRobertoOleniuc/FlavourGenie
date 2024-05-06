@@ -10,6 +10,7 @@ import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import ch.webec.recipeapp.models.Recipe;
+import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.repository.RecipeRepository;
 import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,23 +28,25 @@ public class RecipeService {
     private final GCPCloudStorageAPI gcpCloudStorageAPI;
 
     private final RecipeRepository recipeRepo;
+    private final UserService userService;
 
     private final String chatModel = "gpt-3.5-turbo";
     private final String imagesModel = "dall-e-3";
     private final String imageSize = "1024x1024";
 
-    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo) {
+    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo, UserService userService) {
         this.chatCompletionAPI = chatCompletionAPI;
         this.imageGenerationAPI = imageGenerationAPI;
         this.gcpCloudStorageAPI = gcpCloudStorageAPI;
         this.recipeRepo = recipeRepo;
+        this.userService = userService;
     }
 
     public List<Recipe> getAllRecipes(){
         return recipeRepo.findAll();
     }
 
-    public Recipe generateRecipe(String[] ingredients, boolean generateImage){
+    public Recipe generateRecipe(String[] ingredients, boolean generateImage, User user){
         ChatResponse chatResponse = generateRecipeText(ingredients);
         if(generateImage){
             var parsedChatResponse = toRecipe(chatResponse, null);
@@ -51,10 +54,14 @@ public class RecipeService {
             String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.getRecipeName());
             Recipe recipe = toRecipe(chatResponse, imageUrl);
             recipeRepo.save(recipe);
+            user.addRecipe(recipe);
+            userService.saveUser(user);
             return recipe;
         }else{
             Recipe recipe = toRecipe(chatResponse, null);
             recipeRepo.save(recipe);
+            user.addRecipe(recipe);
+            userService.saveUser(user);
             return recipe;
         }
     }
@@ -97,7 +104,8 @@ public class RecipeService {
                     recipe.getCookingTime(),
                     recipe.getRecipeImageDescription(),
                     recipe.getInstruction(),
-                    imageUrl
+                    imageUrl,
+                    List.of()
             );
         } catch (Exception e) {
             throw new RuntimeException("Failed to convert JSON to Recipe", e);

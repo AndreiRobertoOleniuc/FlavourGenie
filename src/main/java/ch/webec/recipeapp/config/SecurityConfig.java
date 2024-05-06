@@ -10,17 +10,15 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.ArrayList;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
-
     @Autowired
     private UserService userService;
 
@@ -33,11 +31,16 @@ public class SecurityConfig{
         OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService = userRequest -> {
             OidcUser oidcUser = new OidcUserService().loadUser(userRequest);
 
+            if(userService.findUserByEmail(oidcUser.getEmail()) != null){
+                return oidcUser;
+            };
+
             User user = new User(
                 oidcUser.getEmail(),
                 oidcUser.getGivenName(),
                 oidcUser.getFamilyName(),
-                oidcUser.getPicture()
+                oidcUser.getPicture(),
+                    new ArrayList<>()
             );
             userService.saveUser(user);
 

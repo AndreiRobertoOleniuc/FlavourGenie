@@ -3,10 +3,12 @@ package ch.webec.recipeapp.controllers.Rest;
 import ch.webec.recipeapp.models.CreateRecipeRequest.RecipeRequest;
 import ch.webec.recipeapp.models.Recipe;
 import ch.webec.recipeapp.services.RecipeService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ch.webec.recipeapp.models.User;
 
 import java.util.List;
 
@@ -19,9 +21,10 @@ public class RecipeController {
     }
 
     @PostMapping("/api/recipes")
-    public Recipe createRecipe(@RequestBody RecipeRequest recipeRequest) {
+    public Recipe createRecipe(@RequestBody RecipeRequest recipeRequest, Model model) {
         String[] ingredients = recipeRequest.ingredients().toArray(new String[0]);
-        return recipeService.generateRecipe(ingredients, recipeRequest.generateImage());
+        User user = (User) model.getAttribute("user");
+        return recipeService.generateRecipe(ingredients, recipeRequest.generateImage(), user);
     }
 
     @GetMapping("/api/recipes")

@@ -1,5 +1,6 @@
 package ch.webec.recipeapp.controllers;
 
+import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.RecipeService;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Controller;
@@ -34,9 +35,10 @@ public class RecipeWebController {
     }
 
     @PostMapping("/create")
-    public RedirectView createRecipe(@RequestParam @NotBlank String ingredients){
+    public RedirectView createRecipe(@RequestParam @NotBlank String ingredients, Model model){
         String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
-        var recipe = recipeService.generateRecipe(ingredientArray, true);
+        User user = (User) model.getAttribute("user");
+        var recipe = recipeService.generateRecipe(ingredientArray, true,user);
         return new RedirectView("/recipe/" + recipe.getId());
     }
 
