@@ -1,4 +1,7 @@
     {% extends "shared/layout" %}
+        {% block css %}
+        <link rel="stylesheet" href="{{ href("/css/profile.css") }}">
+        {% endblock %}
         {% block title %}Setting{% endblock %}
         {% block content %}
         <form class="setting" method="post" action="/profile">
