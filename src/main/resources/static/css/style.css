@@ -10,6 +10,9 @@ body{
     flex-direction: row;
 }
 
+body, main {
+    max-width: 100%;
+}
 
 .with-navbar{
     margin-left: 150px;
