@@ -1,4 +1,5 @@
 {# @pebvariable name="recipe" type="ch.webec.recipeapp.models.Recipe" #}
+    {# @pebvariable name="currentUserFeedback" type="ch.webec.recipeapp.models.Feedback" #}
     {% extends "shared/layout" %}
     {% block css %}
     <link rel="stylesheet" href="{{ href("/css/recipeDetail.css") }}">
@@ -25,7 +26,6 @@
                 </div>
             </div>
         </div>
-
         <div class="ingredients">
             <div class="section-header">
                 <span>Ingredients</span>
@@ -49,6 +49,99 @@
             <div id="instructionContent">
                 <p>{{ recipe.description }}</p>
                 <p>{{ recipe.instruction }}</p>
+            </div>
+        </div>
+        <div class="feedback_createdBy">
+            <span>Rate this recipe</span>
+            {% if currentUserFeedback is not null %}
+                <div class="rating-touched">
+                <form action="{{ "/feedback/" + recipe.id + "/1" }}" method="post">
+                    <button type="submit" class="rating-button" id="rating-1">
+                        <span class="material-icons-outlined">
+                        {% if 1 <= currentUserFeedback.rating %}
+                                star
+                        {% else %}
+                            star_border
+                        {% endif %}
+                        </span>
+                    </button>
+                </form>
+                <form action="{{ "/feedback/" + recipe.id + "/2" }}" method="post">
+                    <button type="submit" class="rating-button" id="rating-2">
+                        <span class="material-icons-outlined">
+                                {% if 2 <= currentUserFeedback.rating %}
+                                star
+                                {% else %}
+                                star_border
+                                {% endif %}
+                        </span>
+                    </button>
+                </form>
+                <form action="{{ "/feedback/" + recipe.id + "/3" }}" method="post">
+                    <button type="submit" class="rating-button" id="rating-3">
+                        <span class="material-icons-outlined">
+                                {% if 3 <= currentUserFeedback.rating %}
+                                star
+                                {% else %}
+                                star_border
+                                {% endif %}
+                        </span>
+                    </button>
+                </form>
+                <form action="{{ "/feedback/" + recipe.id + "/4" }}" method="post">
+                    <button type="submit" class="rating-button" id="rating-4">
+                        <span class="material-icons-outlined">
+                                {% if 4 <= currentUserFeedback.rating %}
+                                star
+                                {% else %}
+                                star_border
+                                {% endif %}
+                        </span>
+                    </button>
+                </form>
+                <form action="{{ "/feedback/" + recipe.id + "/5" }}" method="post">
+                    <button type="submit" class="rating-button" id="rating-5">
+                        <span class="material-icons-outlined">
+                                {% if 5 <= currentUserFeedback.rating %}
+                                star
+                                {% else %}
+                                star_border
+                                    {% endif %}
+                        </span>
+                    </button>
+                </form>
+                </div>
+                {% else %}
+                <div class="rating-untouched">
+                    <form action="{{ "/feedback/" + recipe.id + "/1" }}" method="post">
+                        <button type="submit" class="rating-button" id="rating-1">
+                            <span class="material-icons-outlined">star_border</span>
+                        </button>
+                    </form>
+                    <form action="{{ "/feedback/" + recipe.id + "/2" }}" method="post">
+                        <button type="submit" class="rating-button" id="rating-2">
+                            <span class="material-icons-outlined">star_border</span>
+                        </button>
+                    </form>
+                    <form action="{{ "/feedback/" + recipe.id + "/3" }}" method="post">
+                        <button type="submit" class="rating-button" id="rating-3">
+                            <span class="material-icons-outlined">star_border</span>
+                        </button>
+                    </form>
+                    <form action="{{ "/feedback/" + recipe.id + "/4" }}" method="post">
+                        <button type="submit" class="rating-button" id="rating-4">
+                            <span class="material-icons-outlined">star_border</span>
+                        </button>
+                    </form>
+                    <form action="{{ "/feedback/" + recipe.id + "/5" }}" method="post">
+                        <button type="submit" class="rating-button" id="rating-5">
+                            <span class="material-icons-outlined">star_border</span>
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
+            <div class="createdBy">
+                <span>created by: {{ createdBy }}</span>
             </div>
         </div>
     </div>

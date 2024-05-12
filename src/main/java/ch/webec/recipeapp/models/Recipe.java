@@ -3,7 +3,9 @@ package ch.webec.recipeapp.models;
 import jakarta.persistence.*;
 import org.checkerframework.checker.units.qual.Length;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 public class Recipe {
@@ -23,12 +25,12 @@ public class Recipe {
     @Column(length = 1000)
     private String instruction;
     private String recipeImage;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Feedback> feedbacks;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
     public Recipe(String recipeName, List<Ingredient> ingredients, List<Category> categories,
                   String recipeDifficulty, String description, String cookingTime,
-                  String recipeImageDescription, String instruction, String recipeImage, List<Feedback> feedbacks) {
+                  String recipeImageDescription, String instruction, String recipeImage, User user) {
         this.recipeName = recipeName;
         this.ingredients = ingredients;
         this.categories = categories;
@@ -38,7 +40,7 @@ public class Recipe {
         this.recipeImageDescription = recipeImageDescription;
         this.instruction = instruction;
         this.recipeImage = recipeImage;
-        this.feedbacks = feedbacks;
+        this.user = user;
     }
 
     protected Recipe(){}
@@ -83,11 +85,7 @@ public class Recipe {
         return recipeImage;
     }
 
-    public List<Feedback> getFeedbacks() {
-        return feedbacks;
-    }
-
-    public void addFeedback(Feedback feedback) {
-        feedbacks.add(feedback);
+    public User getUser() {
+        return user;
     }
 }

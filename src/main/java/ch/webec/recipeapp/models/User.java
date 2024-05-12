@@ -16,26 +16,22 @@ public class User implements UserDetails {
     private String lastName;
     private String picture;
     private String password;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Recipe> recipes;
 
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, String picture, List<Recipe> recipes) {
+    public User(String email, String firstName, String lastName, String picture) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
-        this.recipes = recipes;
     }
 
-    public User(String email, String firstName, String lastName, String picture,  List<Recipe> recipes,String password) {
+    public User(String email, String firstName, String lastName, String picture,String password) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
-        this.recipes = recipes;
         this.password = password;
     }
 
@@ -109,11 +105,4 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
-    }
 }

@@ -10,7 +10,9 @@ body{
     flex-direction: row;
 }
 
+
 .with-navbar{
+    margin-left: 150px;
     width: calc(100% - 150px);
 }
 
@@ -25,6 +27,7 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed; /* Add this line */
 }
 
 .endpoints{
@@ -95,7 +98,7 @@ body{
     width: 45px;
 }
 
-.active{
+nav .active{
     background-color: rgba(255, 166, 33, 0.85);
 }
 nav a{

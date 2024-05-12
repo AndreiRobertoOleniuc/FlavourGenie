@@ -3,6 +3,7 @@
     flex-direction: column;
     padding: 30px 50px;
     color:white;
+    height: 90%;
 }
 
 .recipeDetail > h1{
@@ -142,3 +143,47 @@
 .recipeDetail #ingredientContent ul li{
     margin-right: 20px;
 }
+
+.feedback_createdBy{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: flex-end;
+    flex:1;
+    align-items: center;
+}
+
+.rating-untouched{
+    cursor: pointer;
+    display: flex;
+}
+
+.rating-touched{
+    cursor: pointer;
+    display: flex;
+}
+
+.feedback_createdBy > span{
+    margin-bottom: 10px;
+}
+
+.rating-button{
+    background-color:transparent;
+    border: none;
+    cursor: pointer;
+    color:transparent;;
+}
+
+.rating-button span{
+    color: white;
+    font-size: 24px;
+}
+
+
+.feedback_createdBy .createdBy{
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #CBCBCB;
+}
+

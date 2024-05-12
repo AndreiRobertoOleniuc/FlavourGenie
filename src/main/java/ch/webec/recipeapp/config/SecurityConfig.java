@@ -39,8 +39,7 @@ public class SecurityConfig{
                 oidcUser.getEmail(),
                 oidcUser.getGivenName(),
                 oidcUser.getFamilyName(),
-                oidcUser.getPicture(),
-                    new ArrayList<>()
+                oidcUser.getPicture()
             );
             userService.saveUser(user);
 

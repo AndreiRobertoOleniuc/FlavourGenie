@@ -4,6 +4,7 @@ import ch.webec.recipeapp.adapters.ChatCompletionAPI;
 import ch.webec.recipeapp.adapters.GCPCloudStorageAPI;
 import ch.webec.recipeapp.adapters.ImageGenerationAPI;
 import ch.webec.recipeapp.config.RecipePromptsConfig;
+import ch.webec.recipeapp.models.Feedback;
 import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatRequest;
 import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatResponse;
 import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
@@ -11,6 +12,7 @@ import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import ch.webec.recipeapp.models.Recipe;
 import ch.webec.recipeapp.models.User;
+import ch.webec.recipeapp.repository.FeedbackRepository;
 import ch.webec.recipeapp.repository.RecipeRepository;
 import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,18 +30,18 @@ public class RecipeService {
     private final GCPCloudStorageAPI gcpCloudStorageAPI;
 
     private final RecipeRepository recipeRepo;
-    private final UserService userService;
+    private final FeedbackRepository feedbackRepo;
 
     private final String chatModel = "gpt-3.5-turbo";
     private final String imagesModel = "dall-e-3";
     private final String imageSize = "1024x1024";
 
-    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo, UserService userService) {
+    public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo, FeedbackRepository feedbackRepo) {
         this.chatCompletionAPI = chatCompletionAPI;
         this.imageGenerationAPI = imageGenerationAPI;
         this.gcpCloudStorageAPI = gcpCloudStorageAPI;
         this.recipeRepo = recipeRepo;
-        this.userService = userService;
+        this.feedbackRepo = feedbackRepo;
     }
 
     public List<Recipe> getAllRecipes(){
@@ -49,19 +51,15 @@ public class RecipeService {
     public Recipe generateRecipe(String[] ingredients, boolean generateImage, User user){
         ChatResponse chatResponse = generateRecipeText(ingredients);
         if(generateImage){
-            var parsedChatResponse = toRecipe(chatResponse, null);
+            var parsedChatResponse = toRecipe(chatResponse, null, user);
             String imageUrlOpenAI = generateImage(parsedChatResponse.getRecipeImageDescription());
             String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.getRecipeName());
-            Recipe recipe = toRecipe(chatResponse, imageUrl);
+            Recipe recipe = toRecipe(chatResponse, imageUrl,user);
             recipeRepo.save(recipe);
-            user.addRecipe(recipe);
-            userService.saveUser(user);
             return recipe;
         }else{
-            Recipe recipe = toRecipe(chatResponse, null);
+            Recipe recipe = toRecipe(chatResponse, null,user);
             recipeRepo.save(recipe);
-            user.addRecipe(recipe);
-            userService.saveUser(user);
             return recipe;
         }
     }
@@ -90,7 +88,7 @@ public class RecipeService {
         return imageResponse.data().getFirst().url();
     }
 
-    public Recipe toRecipe(ChatResponse chatResponse, String imageUrl) {
+    public Recipe toRecipe(ChatResponse chatResponse, String imageUrl, User user) {
         String jsonContent = chatResponse.choices().getFirst().message().content();
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -105,7 +103,7 @@ public class RecipeService {
                     recipe.getRecipeImageDescription(),
                     recipe.getInstruction(),
                     imageUrl,
-                    List.of()
+                    user
             );
         } catch (Exception e) {
             throw new RuntimeException("Failed to convert JSON to Recipe", e);
@@ -118,5 +116,9 @@ public class RecipeService {
 
     public Recipe getRecipe(int id) {
         return recipeRepo.findById(id).orElseThrow();
+    }
+
+    public Feedback findFeedbackByUser(User user, Recipe recipe){
+        return feedbackRepo.findByUserAndRecipe(user, recipe);
     }
 }
