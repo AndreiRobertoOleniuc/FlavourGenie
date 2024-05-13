@@ -1,6 +1,5 @@
 package ch.webec.recipeapp.controllers;
 
-import ch.webec.recipeapp.models.Feedback;
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.RecipeService;
 import jakarta.validation.constraints.NotBlank;

@@ -23,7 +23,7 @@
 
 .recipes h2{
     font-size:22px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     font-weight: 500;
 }
 .recipes ul{
@@ -35,11 +35,11 @@
     flex-wrap: wrap;
 }
 .recipeCard{
-    width: 150px;
-    height:150px;
+    width: 170px;
+    height: 170px;
     background-color: rgba(89, 82, 71, 0.8);
     margin-right: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 80px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -50,7 +50,19 @@
     cursor: pointer;
 }
 
+.recipeInfo .feedback{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+.recipeInfo .feedback .material-icons-outlined {
+    font-size: 20px;
+    color:#FFCC16;
+}
+
 .recipeInfo{
+    width: 100%;
     margin-top: -50px;
 }
 

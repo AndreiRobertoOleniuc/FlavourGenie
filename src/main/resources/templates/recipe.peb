@@ -1,4 +1,4 @@
-{# @pebvariable name="recipes" type="java.util.List<ch.webec.recipeapp.models.Recipe>" #}
+{# @pebvariable name="recipes" type="java.util.List<ch.webec.recipeapp.models.RecipeExtended>" #}
 
 {% extends "shared/layout" %}
     {% block css %}
@@ -21,6 +21,43 @@
                                 <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}">
                                 <div class="recipeInfo">
                                     <h3>{{ recipe.recipeName }}</h3>
+                                    <div class="feedback">
+                                            <span class="material-icons-outlined">
+                                                    {% if 1 <= recipe.aggregatedFeedback %}
+                                                    star
+                                                    {% else %}
+                                                    star_border
+                                                    {% endif %}
+                                            </span>
+                                        <span class="material-icons-outlined">
+                                                {% if 2 <= recipe.aggregatedFeedback %}
+                                                star
+                                                {% else %}
+                                                star_border
+                                                {% endif %}
+                                        </span>
+                                        <span class="material-icons-outlined">
+                                                {% if 3 <= recipe.aggregatedFeedback %}
+                                                star
+                                                {% else %}
+                                                star_border
+                                                {% endif %}
+                                        </span>
+                                        <span class="material-icons-outlined">
+                                                {% if 4 <= recipe.aggregatedFeedback %}
+                                                star
+                                                {% else %}
+                                                star_border
+                                                {% endif %}
+                                        </span>
+                                        <span class="material-icons-outlined">
+                                                {% if 5 <= recipe.aggregatedFeedback %}
+                                                star
+                                                {% else %}
+                                                star_border
+                                                {% endif %}
+                                        </span>
+                                    </div>
                                     <div class="recipeMeta">
                                         <p>{{ recipe.cookingTime }}</p>
                                         <div class="separator"></div>

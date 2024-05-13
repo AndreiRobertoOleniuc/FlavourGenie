@@ -153,6 +153,10 @@
     align-items: center;
 }
 
+.feedback_createdBy .material-icons-outlined{
+    color:#FFCC16;
+}
+
 .rating-untouched{
     cursor: pointer;
     display: flex;

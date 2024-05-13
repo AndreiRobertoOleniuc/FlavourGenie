@@ -11,6 +11,7 @@ import ch.webec.recipeapp.models.OpenAI.ChatCompletion.Message;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationRequest;
 import ch.webec.recipeapp.models.OpenAI.ImageGeneration.ImageGenerationResponse;
 import ch.webec.recipeapp.models.Recipe;
+import ch.webec.recipeapp.models.RecipeExtended;
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.repository.FeedbackRepository;
 import ch.webec.recipeapp.repository.RecipeRepository;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -44,8 +46,30 @@ public class RecipeService {
         this.feedbackRepo = feedbackRepo;
     }
 
-    public List<Recipe> getAllRecipes(){
-        return recipeRepo.findAll();
+    public List<RecipeExtended> getAllRecipes(){
+        var recipes = recipeRepo.findAll();
+        var feedbacks = feedbackRepo.findAll();
+        return recipes.stream().map(recipe -> {
+            var feedbackList = feedbacks.stream().filter(f -> Objects.equals(f.getRecipe().getId(), recipe.getId())).toList();
+            int totalRating = feedbackList.stream().mapToInt(Feedback::getRating).sum();
+            int averageRating = feedbackList.isEmpty() ? 0 : Math.round((float) totalRating / feedbackList.size());
+            var recipeExtended = new RecipeExtended(
+                    recipe.getRecipeName(),
+                    recipe.getIngredients(),
+                    recipe.getCategories(),
+                    recipe.getRecipeDifficulty(),
+                    recipe.getDescription(),
+                    recipe.getCookingTime(),
+                    recipe.getRecipeImageDescription(),
+                    recipe.getInstruction(),
+                    recipe.getRecipeImage(),
+                    recipe.getUser(),
+                    recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName(),
+                    averageRating
+            );
+            recipeExtended.setRecipeId(recipe.getId());
+            return recipeExtended;
+        }).collect(Collectors.toList());
     }
 
     public Recipe generateRecipe(String[] ingredients, boolean generateImage, User user){

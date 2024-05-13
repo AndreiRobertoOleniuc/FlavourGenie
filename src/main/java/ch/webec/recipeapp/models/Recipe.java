@@ -1,11 +1,8 @@
 package ch.webec.recipeapp.models;
 
 import jakarta.persistence.*;
-import org.checkerframework.checker.units.qual.Length;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 public class Recipe {
@@ -87,5 +84,9 @@ public class Recipe {
 
     public User getUser() {
         return user;
+    }
+
+    public void setRecipeId(Long id) {
+        this.id = id;
     }
 }
