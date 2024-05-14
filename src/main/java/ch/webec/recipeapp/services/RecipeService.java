@@ -64,7 +64,7 @@ public class RecipeService {
                     recipe.getInstruction(),
                     recipe.getRecipeImage(),
                     recipe.getUser(),
-                    recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName(),
+                    recipe.getUser().getEmail(),
                     averageRating
             );
             recipeExtended.setRecipeId(recipe.getId());
