@@ -157,6 +157,60 @@
     color:#FFCC16;
 }
 
+.recipeHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipeHeader > span{
+    cursor: pointer;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-left: -22px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip > button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #c8bdbd;
+}
+
+.tooltip > button > span:hover{
+    color: white;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.more-icon {
+    font-size: 24px;
+}
 .rating-untouched{
     cursor: pointer;
     display: flex;

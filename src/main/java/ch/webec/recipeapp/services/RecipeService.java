@@ -19,6 +19,7 @@ import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -140,6 +141,28 @@ public class RecipeService {
 
     public Recipe getRecipe(int id) {
         return recipeRepo.findById(id).orElseThrow();
+    }
+
+    public void deleteFeedbacksByRecipe(Recipe recipe) {
+        var feedbacks = feedbackRepo.findAllByRecipe(recipe);
+        feedbackRepo.deleteAll(feedbacks);
+    }
+
+    private void deleteIngredientsByRecipe(Recipe recipe) {
+        recipe.setIngredients(new ArrayList<>());
+    }
+
+    private void deleteCategoriesByRecipe(Recipe recipe) {
+        recipe.setCategories(new ArrayList<>());
+    }
+
+    public void deleteRecipe(int id) {
+        var recipe = recipeRepo.findById(id).orElseThrow();
+        deleteFeedbacksByRecipe(recipe);
+        deleteIngredientsByRecipe(recipe);
+        deleteCategoriesByRecipe(recipe);
+        recipeRepo.save(recipe);
+        //recipeRepo.deleteById(id);
     }
 
     public Feedback findFeedbackByUser(User user, Recipe recipe){

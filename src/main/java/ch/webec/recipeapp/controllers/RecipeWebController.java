@@ -53,4 +53,10 @@ public class RecipeWebController {
         return "recipeDetail";
     }
 
+    @PostMapping("/recipe/delete/{id}")
+    public RedirectView deleteRecipe(@PathVariable int id){
+        recipeService.deleteRecipe(id);
+        return new RedirectView("/recipe");
+    }
+
 }

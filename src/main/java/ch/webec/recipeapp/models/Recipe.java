@@ -11,9 +11,11 @@ public class Recipe {
     private Long id; // assuming there is an ID field for the entity
 
     private String recipeName;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "recipe_ingredient", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private List<Ingredient> ingredients;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
     private String recipeDifficulty;
     private String description;
@@ -88,5 +90,13 @@ public class Recipe {
 
     public void setRecipeId(Long id) {
         this.id = id;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }

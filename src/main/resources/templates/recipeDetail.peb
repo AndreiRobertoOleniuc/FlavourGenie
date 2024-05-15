@@ -7,7 +7,17 @@
     {% block title %}{{ recipe.recipeName }} | FlavorGenie{% endblock %}
     {% block content %}
     <div class="recipeDetail">
-        <h1>Good choice!</h1>
+        <div class="recipeHeader">
+            <h1>Good choice!</h1>
+            <div class="tooltip-container">
+                <span class="material-icons-outlined more-icon">more_horiz</span>
+                <form class="tooltip" method="post" action="{{ href("/recipe/delete/"+recipe.id) }}">
+                    <button type="submit">
+                        <span class="material-icons-outlined delete-icon">delete</span>
+                    </button>
+                </form>
+            </div>
+        </div>
         <div class="infoCard">
             <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}" class="recipeImage"/>
             <div class="metaInfo">
