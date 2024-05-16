@@ -1,4 +1,4 @@
-package ch.webec.recipeapp.controllers;
+package ch.webec.recipeapp.controllers.web;
 
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.UserService;
@@ -28,8 +28,8 @@ public class ProfileWebController {
     public String saveProfile(@RequestParam @NotBlank String firstname, @RequestParam @NotBlank String lastname, Model model) {
         User user = (User) model.getAttribute("user");
         assert user != null;
-        user.setFirstName(firstname);
-        user.setLastName(lastname);
+        userService.updateUserFirstName(user, firstname);
+        userService.updateUserLastName(user, lastname);
         userService.saveUser(user);
         return "profile";
     }

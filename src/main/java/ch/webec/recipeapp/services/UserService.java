@@ -17,17 +17,26 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
+    public void updateUserFirstName(User user, String firstName) {
+        user.setFirstName(firstName);
+    }
+
+    public void updateUserLastName(User user, String lastName) {
+        user.setLastName(lastName);
+    }
+
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);

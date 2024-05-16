@@ -1,4 +1,4 @@
-package ch.webec.recipeapp.controllers;
+package ch.webec.recipeapp.controllers.web;
 
 import ch.webec.recipeapp.models.User;
 import org.springframework.stereotype.Controller;

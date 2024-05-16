@@ -19,7 +19,6 @@ import ch.webec.recipeapp.utils.LoggerUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -34,10 +33,6 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepo;
     private final FeedbackRepository feedbackRepo;
-
-    private final String chatModel = "gpt-3.5-turbo";
-    private final String imagesModel = "dall-e-3";
-    private final String imageSize = "1024x1024";
 
     public RecipeService(ChatCompletionAPI chatCompletionAPI, ImageGenerationAPI imageGenerationAPI, GCPCloudStorageAPI gcpCloudStorageAPI, RecipeRepository recipeRepo, FeedbackRepository feedbackRepo) {
         this.chatCompletionAPI = chatCompletionAPI;
@@ -73,8 +68,9 @@ public class RecipeService {
         }).collect(Collectors.toList());
     }
 
-    public Recipe generateRecipe(String[] ingredients, boolean generateImage, User user){
-        ChatResponse chatResponse = generateRecipeText(ingredients);
+    public Recipe generateRecipe(String ingredients, boolean generateImage, User user){
+        String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
+        ChatResponse chatResponse = generateRecipeText(ingredientArray);
         if(generateImage){
             var parsedChatResponse = toRecipe(chatResponse, null, user);
             String imageUrlOpenAI = generateImage(parsedChatResponse.getRecipeImageDescription());
@@ -96,6 +92,7 @@ public class RecipeService {
         Message userMessage = new Message("user", "I have the following ingredients at home, what could I cook with these: " + result);
 
         List<Message> messages = Arrays.asList(systemMessage, userMessage);
+        String chatModel = "gpt-3.5-turbo";
         ChatRequest chatRequest = new ChatRequest(chatModel, messages);
         var recipeResponse = this.chatCompletionAPI.generateRecipe(chatRequest);
         LoggerUtil.logInfo("Used Ingredient: {}", Arrays.toString(ingredients));
@@ -108,6 +105,8 @@ public class RecipeService {
     }
 
     public String generateImage(String prompt){
+        String imageSize = "1024x1024";
+        String imagesModel = "dall-e-3";
         ImageGenerationResponse imageResponse = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel,  RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
         LoggerUtil.logInfo("Generated Image: ", prompt);
         return imageResponse.data().getFirst().url();
@@ -155,7 +154,7 @@ public class RecipeService {
         recipeRepo.deleteById(id);
     }
 
-    public Feedback findFeedbackByUser(User user, Recipe recipe){
-        return feedbackRepo.findByUserAndRecipe(user, recipe);
+    public String getCreatedByForRecipe(Recipe recipe){
+        return recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName();
     }
 }

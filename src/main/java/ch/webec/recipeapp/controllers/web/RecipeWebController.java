@@ -1,6 +1,7 @@
-package ch.webec.recipeapp.controllers;
+package ch.webec.recipeapp.controllers.web;
 
 import ch.webec.recipeapp.models.User;
+import ch.webec.recipeapp.services.FeedbackService;
 import ch.webec.recipeapp.services.RecipeService;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Controller;
@@ -14,10 +15,12 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 public class RecipeWebController {
 
-    private RecipeService recipeService;
+    private final FeedbackService feedbackService;
+    private final RecipeService recipeService;
 
-    public RecipeWebController(RecipeService recipeService) {
+    public RecipeWebController(RecipeService recipeService, FeedbackService feedbackService) {
         this.recipeService = recipeService;
+        this.feedbackService = feedbackService;
     }
 
     @GetMapping("/recipe")
@@ -34,9 +37,8 @@ public class RecipeWebController {
 
     @PostMapping("/create")
     public RedirectView createRecipe(@RequestParam @NotBlank String ingredients, Model model){
-        String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
         User user = (User) model.getAttribute("user");
-        var recipe = recipeService.generateRecipe(ingredientArray, true,user);
+        var recipe = recipeService.generateRecipe(ingredients, true,user);
         return new RedirectView("/recipe/" + recipe.getId());
     }
 
@@ -44,11 +46,10 @@ public class RecipeWebController {
     public String recipe(Model model, @PathVariable int id){
         var recipe = recipeService.getRecipe(id);
         User user = (User) model.getAttribute("user");
-        var currentUserFeedback = recipeService.findFeedbackByUser(user, recipe);
-        System.out.println(currentUserFeedback);
+        var currentUserFeedback = feedbackService.findFeedbackByUser(user, recipe);
         model.addAttribute("currentUserFeedback", currentUserFeedback);
         model.addAttribute("currentUser", user);
-        model.addAttribute("createdBy", recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName());
+        model.addAttribute("createdBy", recipeService.getCreatedByForRecipe(recipe));
         model.addAttribute("recipe", recipe);
         return "recipeDetail";
     }
