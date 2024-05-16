@@ -148,21 +148,11 @@ public class RecipeService {
         feedbackRepo.deleteAll(feedbacks);
     }
 
-    private void deleteIngredientsByRecipe(Recipe recipe) {
-        recipe.setIngredients(new ArrayList<>());
-    }
-
-    private void deleteCategoriesByRecipe(Recipe recipe) {
-        recipe.setCategories(new ArrayList<>());
-    }
-
     public void deleteRecipe(int id) {
         var recipe = recipeRepo.findById(id).orElseThrow();
         deleteFeedbacksByRecipe(recipe);
-        deleteIngredientsByRecipe(recipe);
-        deleteCategoriesByRecipe(recipe);
         recipeRepo.save(recipe);
-        //recipeRepo.deleteById(id);
+        recipeRepo.deleteById(id);
     }
 
     public Feedback findFeedbackByUser(User user, Recipe recipe){

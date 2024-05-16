@@ -11,11 +11,9 @@ public class Recipe {
     private Long id; // assuming there is an ID field for the entity
 
     private String recipeName;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "recipe_ingredient", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Category> categories;
     private String recipeDifficulty;
     private String description;
@@ -24,7 +22,7 @@ public class Recipe {
     @Column(length = 1000)
     private String instruction;
     private String recipeImage;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private User user;
 
     public Recipe(String recipeName, List<Ingredient> ingredients, List<Category> categories,
