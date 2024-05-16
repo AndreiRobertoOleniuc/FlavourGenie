@@ -1,0 +1,10 @@
+.about-page{
+    color: #CBCBCB;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 50px;
+}
+
+.about-page h1,h2{
+    color: white;
+}
