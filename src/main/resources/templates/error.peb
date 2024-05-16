@@ -1,4 +1,4 @@
-    {% import "shared/nav" %}
+
     <!DOCTYPE HTML>
     <html lang="en">
     <head>
@@ -17,16 +17,23 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
         <link rel="stylesheet" href="{{ href("/css/style.css") }}">
-        {% block css %}{% endblock %}
-        <title>{% block title %}Title{% endblock %}</title>
+        <link rel="stylesheet" href="{{ href("/css/error.css") }}">
+        <title>Error | FlavorGenie</title>
     </head>
     <body>
-        {{ nav(user,request.servletPath) }}
-    <main class="with-navbar">
-            {% block content %}
-        {% endblock %}
+    <main>
+        <div class="error">
+            <p>Error</p>
+                {% if error == "404" %}
+                <p>Page not found - 404</p>
+                <a href="/recipe">Go back to recipes</a>
+                {% elseif error == "500" %}
+                <p>Internal server error - 500</p>
+                <p>Something went wrong, please contact support or try again later.</p>
+                {% else %}
+                {{ error }}
+            {% endif %}
+        </div>
     </main>
     </body>
     </html>
-
-
