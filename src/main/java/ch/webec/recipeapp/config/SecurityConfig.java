@@ -46,43 +46,24 @@ public class SecurityConfig{
             return oidcUser;
         };
 
-//        OAuth2UserService<OAuth2UserRequest, OAuth2User> githubUserService = userRequest -> {
-//            OAuth2User oauth2User = new DefaultOAuth2UserService().loadUser(userRequest);
-//
-//            User user = new User(
-//                    oauth2User.getAttribute("email"),
-//                    oauth2User.getAttribute("name"),
-//                    oauth2User.getAttribute("login"), // GitHub does not provide given name and family name, use login instead
-//                    oauth2User.getAttribute("avatar_url") // GitHub uses avatar_url for the profile picture
-//            );
-//            userService.saveUser(user);
-//
-//            return oauth2User;
-//        };
-
         return http.authorizeHttpRequests(req ->
                         req.requestMatchers("/api/**").permitAll()
-                        .requestMatchers("/login").permitAll()
-//                        .requestMatchers("/register").permitAll()
-                        .requestMatchers( "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/error").permitAll()
+                                .requestMatchers("/404").permitAll()
+                                .requestMatchers("/500").permitAll()
+                                .requestMatchers("/502").permitAll()
+                                .requestMatchers("/405").permitAll()
+                                .requestMatchers("/login").permitAll()
+                                .requestMatchers( "/css/**", "/img/**", "/js/**").permitAll()
                                 .anyRequest().authenticated()
                 )
-//                .formLogin(login -> login
-//                        .loginPage("/login").permitAll()
-//                        .defaultSuccessUrl("/recipe")
-//                        .usernameParameter("email")
-//                        .passwordParameter("password")
-//                        .failureForwardUrl("/login?error=true")
-//                )
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/login").permitAll().defaultSuccessUrl("/recipe")
                         .userInfoEndpoint(userInfo -> userInfo
                                 .oidcUserService(oidcUserService)
-//                                .userService(githubUserService) // For OAuth2 providers
                         )
                 )
                 .csrf(AbstractHttpConfigurer::disable)
-//                .userDetailsService(userService)
                 .build();
     }
 }

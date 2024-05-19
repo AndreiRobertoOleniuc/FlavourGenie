@@ -910,7 +910,7 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:220)
 	at jdk.proxy4/jdk.proxy4.$Proxy122.findByEmail(Unknown Source)
-	at ch.webec.recipeapp.controllers.global.GlobalControllerAdvice.addGlobalAttributes(GlobalControllerAdvice.java:35)
+	at ch.webec.recipeapp.controllers.shared.GlobalControllerAdvice.addGlobalAttributes(GlobalControllerAdvice.java:35)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255)
