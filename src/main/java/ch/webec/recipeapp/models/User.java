@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -101,8 +102,16 @@ public class User implements UserDetails {
         return false;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getPicture(), user.getPicture()) && Objects.equals(getPassword(), user.getPassword());
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail(), getFirstName(), getLastName(), getPicture(), getPassword());
+    }
 }

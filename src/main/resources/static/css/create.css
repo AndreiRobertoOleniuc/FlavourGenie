@@ -1,3 +1,4 @@
+
 .creation {
     color: white;
     display: flex;
@@ -10,6 +11,7 @@
     display: flex;
     align-items: center;
 }
+
 
 #ingredient-input {
     background-color: transparent;
@@ -36,6 +38,17 @@
     transform: translateY(-50%);
 }
 
+.creation label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.input-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+}
 
 .generate-btn {
     width: 227px;
@@ -47,7 +60,7 @@
     border-radius: 7px;
     font-size: 16px;
     cursor: pointer;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .chips {
@@ -71,6 +84,6 @@
     cursor: pointer;
 }
 
-#ingredients{
+#ingredients {
     display: none;
 }

@@ -89,11 +89,6 @@ public class Recipe {
     public void setRecipeId(Long id) {
         this.id = id;
     }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }

@@ -11,22 +11,24 @@ import org.springframework.stereotype.Service;
 public class FeedbackService {
     private final RecipeRepository recipeRepo;
     private final FeedbackRepository feedbackRepo;
-    private final RecipeService recipeService;
 
-    public FeedbackService(RecipeRepository recipeRepo, FeedbackRepository feedbackRepo, RecipeService recipeService) {
+    public FeedbackService(RecipeRepository recipeRepo, FeedbackRepository feedbackRepo) {
         this.recipeRepo = recipeRepo;
         this.feedbackRepo = feedbackRepo;
-        this.recipeService = recipeService;
     }
 
     public void addOrUpdateFeedback(int recipeId, int rating, User user){
         Recipe recipe = recipeRepo.findById(recipeId).orElseThrow();
-        Feedback feedback = recipeService.findFeedbackByUser(user, recipe);
+        Feedback feedback = findFeedbackByUser(user, recipe);
         if (feedback != null) {
             feedback.setRating(rating);
         } else {
             feedback = new Feedback(rating, user, recipe);
         }
         feedbackRepo.save(feedback);
+    }
+
+    public Feedback findFeedbackByUser(User user, Recipe recipe){
+        return feedbackRepo.findByUserAndRecipe(user, recipe);
     }
 }
