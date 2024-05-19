@@ -12,9 +12,11 @@ import java.util.ArrayList;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final RecipeService recipeService;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RecipeService recipeService) {
         this.userRepository = userRepository;
+        this.recipeService = recipeService;
     }
 
     public void saveUser(User user) {
@@ -34,6 +36,10 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUser(User user) {
+        recipeService.getRecipeByUser(user).forEach(recipe ->{
+            recipe.setUser(null);
+            recipeService.updateRecipe(recipe);
+        });
         userRepository.delete(user);
     }
 

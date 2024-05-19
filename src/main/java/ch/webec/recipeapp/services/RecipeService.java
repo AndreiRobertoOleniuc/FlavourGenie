@@ -134,6 +134,14 @@ public class RecipeService {
         }
     }
 
+    public List<Recipe> getRecipeByUser(User user) {
+        return recipeRepo.findAllByUser(user);
+    }
+
+    public void updateRecipe(Recipe recipe) {
+        recipeRepo.save(recipe);
+    }
+
     public List<Recipe> getRecipe() {
         return recipeRepo.findAll();
     }
