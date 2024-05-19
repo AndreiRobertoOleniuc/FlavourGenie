@@ -50,6 +50,7 @@ public class RecipeWebController {
         var currentUserFeedback = feedbackService.findFeedbackByUser(user, recipe);
         model.addAttribute("currentUserFeedback", currentUserFeedback);
         model.addAttribute("currentUser", user);
+        model.addAttribute("creationUser", recipe.getUser());
         model.addAttribute("createdBy", recipeService.getCreatedByForRecipe(recipe));
         model.addAttribute("recipe", recipe);
         return "recipeDetail";

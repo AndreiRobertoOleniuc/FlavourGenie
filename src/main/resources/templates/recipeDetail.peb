@@ -1,6 +1,8 @@
 {# @pebvariable name="recipe" type="ch.webec.recipeapp.models.Recipe" #}
 {# @pebvariable name="currentUserFeedback" type="ch.webec.recipeapp.models.Feedback" #}
-    {% extends "shared/layout" %}
+{# @pebvariable name="currentUser" type="ch.webec.recipeapp.models.User" #}
+{# @pebvariable name="creationUser" type="ch.webec.recipeapp.models.User" #}
+{% extends "shared/layout" %}
     {% block css %}
     <link rel="stylesheet" href="{{ href("/css/recipeDetail.css") }}">
     {% endblock %}
@@ -9,14 +11,16 @@
     <article class="recipeDetail">
         <header class="recipeHeader">
             <h1>Good choice!</h1>
-            <div class="tooltip-container">
-                <span class="material-icons-outlined more-icon">more_horiz</span>
-                <form class="tooltip" method="post" action="{{ href("/recipe/delete/"+recipe.id) }}">
-                    <button type="submit">
-                        <span class="material-icons-outlined delete-icon">delete</span>
-                    </button>
-                </form>
-            </div>
+            {% if currentUser.email == creationUser.email %}
+                <div class="tooltip-container">
+                    <span class="material-icons-outlined more-icon">more_horiz</span>
+                    <form class="tooltip" method="post" action="{{ href("/recipe/delete/"+recipe.id) }}">
+                        <button type="submit">
+                            <span class="material-icons-outlined delete-icon">delete</span>
+                        </button>
+                    </form>
+                </div>
+            {% endif %}
         </header>
         <section class="infoCard">
             <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}" class="recipeImage"/>
