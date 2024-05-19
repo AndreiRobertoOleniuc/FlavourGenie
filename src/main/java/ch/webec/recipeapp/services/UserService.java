@@ -13,10 +13,12 @@ import java.util.ArrayList;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final RecipeService recipeService;
+    private final FeedbackService feedbackService;
 
-    public UserService(UserRepository userRepository, RecipeService recipeService) {
+    public UserService(UserRepository userRepository, RecipeService recipeService, FeedbackService feedbackService) {
         this.userRepository = userRepository;
         this.recipeService = recipeService;
+        this.feedbackService = feedbackService;
     }
 
     public void saveUser(User user) {
@@ -40,6 +42,10 @@ public class UserService implements UserDetailsService {
             recipe.setUser(null);
             recipeService.updateRecipe(recipe);
         });
+        feedbackService.findAllFeedbackByRecipe(user)
+                .forEach(feedback ->
+                        feedbackService.deleteFeedback(feedback.getId().intValue())
+                );
         userRepository.delete(user);
     }
 

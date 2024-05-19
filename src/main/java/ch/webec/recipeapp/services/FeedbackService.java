@@ -7,6 +7,8 @@ import ch.webec.recipeapp.repository.FeedbackRepository;
 import ch.webec.recipeapp.repository.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FeedbackService {
     private final RecipeRepository recipeRepo;
@@ -28,7 +30,16 @@ public class FeedbackService {
         feedbackRepo.save(feedback);
     }
 
+    public void deleteFeedback(int feedbackId){
+        Feedback feedback = feedbackRepo.findById(feedbackId).orElseThrow();
+        feedbackRepo.delete(feedback);
+    }
+
     public Feedback findFeedbackByUser(User user, Recipe recipe){
         return feedbackRepo.findByUserAndRecipe(user, recipe);
+    }
+
+    public List<Feedback> findAllFeedbackByRecipe(User user){
+        return feedbackRepo.findAlByUser(user);
     }
 }

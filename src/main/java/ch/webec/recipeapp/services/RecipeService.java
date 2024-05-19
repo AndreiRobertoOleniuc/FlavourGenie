@@ -49,23 +49,28 @@ public class RecipeService {
             var feedbackList = feedbacks.stream().filter(f -> Objects.equals(f.getRecipe().getId(), recipe.getId())).toList();
             int totalRating = feedbackList.stream().mapToInt(Feedback::getRating).sum();
             int averageRating = feedbackList.isEmpty() ? 0 : Math.round((float) totalRating / feedbackList.size());
-            var recipeExtended = new RecipeExtended(
-                    recipe.getRecipeName(),
-                    recipe.getIngredients(),
-                    recipe.getCategories(),
-                    recipe.getRecipeDifficulty(),
-                    recipe.getDescription(),
-                    recipe.getCookingTime(),
-                    recipe.getRecipeImageDescription(),
-                    recipe.getInstruction(),
-                    recipe.getRecipeImage(),
-                    recipe.getUser(),
-                    recipe.getUser().getEmail(),
-                    averageRating
-            );
-            recipeExtended.setRecipeId(recipe.getId());
-            return recipeExtended;
+            String email = recipe.getUser() != null ? recipe.getUser().getEmail() : "[deleted]";
+            return getRecipeExtended(recipe, email, averageRating);
         }).collect(Collectors.toList());
+    }
+
+    private static RecipeExtended getRecipeExtended(Recipe recipe, String email, int averageRating) {
+        var recipeExtended = new RecipeExtended(
+                recipe.getRecipeName(),
+                recipe.getIngredients(),
+                recipe.getCategories(),
+                recipe.getRecipeDifficulty(),
+                recipe.getDescription(),
+                recipe.getCookingTime(),
+                recipe.getRecipeImageDescription(),
+                recipe.getInstruction(),
+                recipe.getRecipeImage(),
+                recipe.getUser(),
+                email,
+                averageRating
+        );
+        recipeExtended.setRecipeId(recipe.getId());
+        return recipeExtended;
     }
 
     public Recipe generateRecipe(String ingredients, boolean generateImage, User user){
@@ -163,6 +168,9 @@ public class RecipeService {
     }
 
     public String getCreatedByForRecipe(Recipe recipe){
+        if (recipe.getUser() == null) {
+            return "[deleted]";
+        }
         return recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName();
     }
 }

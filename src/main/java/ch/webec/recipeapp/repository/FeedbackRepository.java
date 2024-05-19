@@ -10,4 +10,5 @@ import java.util.List;
 public interface FeedbackRepository extends JpaRepository<Feedback, Integer>{
     Feedback findByUserAndRecipe(User user, Recipe recipe);
     List<Feedback> findAllByRecipe(Recipe recipe);
+    List<Feedback> findAlByUser(User user);
 }
