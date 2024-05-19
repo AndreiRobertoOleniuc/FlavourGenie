@@ -1,15 +1,26 @@
 {% extends "shared/layout" %}
-    {% block css %}
-    <link rel="stylesheet" href="{{ href("/css/about.css") }}">
-    {% endblock %}
-{% block title %}FlavorGenie{% endblock %}
-{% block content %}
-    <div class="about-page">
-        <h1>About</h1>
-        <p>FlavorGenie is an innovative platform that helps individuals to craft recipes using ingredients they already have at home, with the support of AI technology. Users can also share their creations and receive feedback from the community. Each recipe features a list of ingredients, a brief description, and detailed cooking instructions.</p>
-        <h2>Individual Features</h2>
-        <p>FlavorGenie uses JavaScript for a smooth and easy-to-use interface. It also connects with external services like OpenAI's API to help generate recipes and Google Cloud Storage to keep all images secure and accessible. This setup ensures the site works quickly and efficiently for all users.</p>
-    </div>
-
-{% endblock%}
+        {% block css %}
+        <link rel="stylesheet" href="{{ href("/css/about.css") }}">
+        {% endblock %}
+        {% block title %}FlavorGenie{% endblock %}
+        {% block content %}
+        <article class="about-page">
+            <header>
+                <h1>About</h1>
+            </header>
+            <section>
+                <p>FlavorGenie is an innovative platform that helps individuals to craft recipes using ingredients they
+                    already have at home, with the support of AI technology. Users can also share their creations and
+                    receive feedback from the community. Each recipe features a list of ingredients, a brief
+                    description, and detailed cooking instructions.</p>
+            </section>
+            <section>
+                <h2>Individual Features</h2>
+                <p>FlavorGenie uses JavaScript for a smooth and easy-to-use interface. It also connects with external
+                    services like OpenAI's API to help generate recipes and Google Cloud Storage to keep all images
+                    secure and accessible. This setup ensures the site works quickly and efficiently for all users.</p>
+            </section>
+        </article>
+        {% endblock%}
 {% set user = user %}
+

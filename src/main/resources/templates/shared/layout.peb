@@ -20,7 +20,9 @@
 </head>
 <body>
     {% if request.servletPath != "/login" %}
-    {{ nav(user,request.servletPath) }}
+        <header>
+                {{ nav(user,request.servletPath) }}
+        </header>
     {% endif %}
     <main class="{{ request.servletPath == "/login" ? "no-navbar" : "with-navbar" }}">
                 {% block content %}
