@@ -6,10 +6,12 @@ import ch.webec.recipeapp.services.RecipeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DataJpaTest
+@Sql(scripts = "/test-data.sql") // SQL script to populate the database
 public class RecipeServiceIT {
     RecipeService service;
 
@@ -22,6 +24,6 @@ public class RecipeServiceIT {
     void getAllRecipes(){
         var recipes = service.getAllRecipes();
         // assert something
-        //assertNotEquals(0, recipes.size());
+        assertEquals(0, recipes.size());
     }
 }
