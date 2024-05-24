@@ -19,7 +19,7 @@ public class FeedbackService {
         this.feedbackRepo = feedbackRepo;
     }
 
-    public void addOrUpdateFeedback(int recipeId, int rating, User user){
+    public Feedback addOrUpdateFeedback(int recipeId, int rating, User user){
         Recipe recipe = recipeRepo.findById(recipeId).orElseThrow();
         Feedback feedback = findFeedbackByUser(user, recipe);
         if (feedback != null) {
@@ -28,6 +28,7 @@ public class FeedbackService {
             feedback = new Feedback(rating, user, recipe);
         }
         feedbackRepo.save(feedback);
+        return feedback;
     }
 
     public void deleteFeedback(int feedbackId){
