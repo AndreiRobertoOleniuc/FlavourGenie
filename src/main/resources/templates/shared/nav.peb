@@ -8,7 +8,7 @@
             </a>
         </li>
         <li>
-            <a href="/recipe" class="{{ path == "/recipe" ? "active" : "" }}">
+            <a href="/recipe" class="{{ path.startsWith("/recipe") ? "active" : "" }}">
                 <i class="material-icons">menu_book</i>
                 Recipes
             </a>
