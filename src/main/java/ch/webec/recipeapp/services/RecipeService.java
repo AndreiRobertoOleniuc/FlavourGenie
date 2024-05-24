@@ -172,6 +172,8 @@ public class RecipeService {
         if (recipe.getUser() == null) {
             return "[deleted]";
         }
-        return recipe.getUser().getFirstName() + " " + recipe.getUser().getLastName();
+        var lastname =  recipe.getUser().getLastName() == null ? "" : recipe.getUser().getLastName();
+        var firstname = recipe.getUser().getFirstName() == null ? "" : recipe.getUser().getFirstName();
+        return firstname + " " +lastname;
     }
 }
