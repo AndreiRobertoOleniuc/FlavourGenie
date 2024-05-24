@@ -4,6 +4,7 @@ import ch.webec.recipeapp.adapters.ChatCompletionAPI;
 import ch.webec.recipeapp.adapters.GCPCloudStorageAPI;
 import ch.webec.recipeapp.adapters.ImageGenerationAPI;
 import ch.webec.recipeapp.config.RecipePromptsConfig;
+import ch.webec.recipeapp.errors.ResourceNotFound;
 import ch.webec.recipeapp.models.Feedback;
 import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatRequest;
 import ch.webec.recipeapp.models.OpenAI.ChatCompletion.ChatResponse;
@@ -73,7 +74,7 @@ public class RecipeService {
         return recipeExtended;
     }
 
-    public Recipe generateRecipe(String ingredients, boolean generateImage, User user){
+    public Recipe generateRecipe(String ingredients, boolean generateImage, User user) {
         String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
         ChatResponse chatResponse = generateRecipeText(ingredientArray);
         if(generateImage){
@@ -90,7 +91,7 @@ public class RecipeService {
         }
     }
 
-    public ChatResponse generateRecipeText(String[] ingredients){
+    public ChatResponse generateRecipeText(String[] ingredients) {
         Message systemMessage = RecipePromptsConfig.getMessage();
         String result = Arrays.stream(ingredients)
                 .collect(Collectors.joining(",", "[", "]"));
@@ -152,7 +153,7 @@ public class RecipeService {
     }
 
     public Recipe getRecipe(int id) {
-        return recipeRepo.findById(id).orElseThrow();
+        return recipeRepo.findById(id).orElseThrow(ResourceNotFound::new);
     }
 
     public void deleteFeedbacksByRecipe(Recipe recipe) {
