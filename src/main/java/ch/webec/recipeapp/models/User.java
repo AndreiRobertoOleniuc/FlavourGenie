@@ -1,16 +1,14 @@
 package ch.webec.recipeapp.models;
 
-import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class User{
     @Id
     private String email;
     private String firstName;
@@ -68,40 +66,9 @@ public class User implements UserDetails {
         this.picture = picture;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
-
     public String getPassword() {
         return password;
     }
-
-    @Override
-    public String getUsername() {
-        return "";
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
 
     @Override
     public boolean equals(Object o) {
