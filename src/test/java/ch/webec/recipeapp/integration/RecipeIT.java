@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Sql(scripts = "/test-data.sql")
 public class RecipeIT {
 
-    RecipeService service;
+    private final RecipeService service;
 
     @Autowired
     public RecipeIT(RecipeRepository repository, FeedbackRepository feedbackRepository) {
