@@ -25,7 +25,7 @@ public class UserIT {
     public UserIT(UserRepository userRepository, RecipeRepository recipeRepository, FeedbackRepository feedbackRepository) {
         recipeService = new RecipeService(null, null, null, recipeRepository, feedbackRepository);
         feedbackService = new FeedbackService(recipeRepository, feedbackRepository);
-        this.userService = new UserService(userRepository, recipeService, feedbackService);
+        this.userService = new UserService(userRepository, recipeService, feedbackService,null);
     }
 
     @Test

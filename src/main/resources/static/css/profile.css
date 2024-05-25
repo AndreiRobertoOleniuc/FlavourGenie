@@ -54,6 +54,15 @@
     justify-content: flex-end;
 }
 
+.static{
+    display: flex;
+    flex-direction: row;
+}
+
+.static span{
+    margin-left: 10px;
+}
+
 .save-btn {
     width: 227px;
     height: 48px;

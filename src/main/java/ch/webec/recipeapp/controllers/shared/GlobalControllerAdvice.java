@@ -30,9 +30,16 @@ public class GlobalControllerAdvice {
             return;
         }
 
+        User user = null;
         if (authentication.getPrincipal() instanceof OidcUser) {
             OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
-            User user = userRepository.findByEmail(oidcUser.getEmail());
+            user = userRepository.findByEmail(oidcUser.getEmail());
+        } else if (authentication.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
+            org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+            user = userRepository.findByEmail(userDetails.getUsername());
+        }
+
+        if (user != null) {
             model.addAttribute("user", user);
         }
     }

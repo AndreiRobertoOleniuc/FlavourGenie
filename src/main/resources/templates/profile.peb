@@ -21,8 +21,8 @@
             </header>
             <form method="post" action="/profile">
                 <div class="forms">
-                    <div class="form-group">
-                        <label for="email">Email</label>
+                    <div class="form-group static">
+                        <label for="email">Email: </label>
                         <span>{{ user.email }}</span>
                     </div>
                     <div class="form-group">

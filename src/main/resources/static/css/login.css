@@ -8,7 +8,7 @@
 
 .loginCard{
     margin-bottom: 200px;
-    padding: 20px;
+    padding: 32px 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgb(36 34 34);
     background-color: #242222;
@@ -19,6 +19,68 @@
     color:white;
 }
 
+.loginCard .divider{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.loginCard .divider .line {
+    height: 1px;
+    width: 40%;
+    background-color: #d1d1d1;
+}
+
+.loginCard .divider span {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.loginCard .form-login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginCard .form-login .submitFormLogin{
+    margin-top: 20px;
+    padding: 5px;
+    background-color: white;
+    color: #242222;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.loginCard .form-login input[type="text"], .loginCard .form-login input[type="password"]{
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-login label{
+    color: #d1d1d1;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.loginCard .form-login input[type="text"]:focus, .loginCard .form-login input[type="password"]:focus{
+    border-color: #4285f4;
+    outline: none;
+    box-shadow: none; /* Add this line */
+}
 
 .loginCard > img{
     width: 50px;
@@ -51,7 +113,17 @@
     text-align: center;
 }
 .loginCard .header{
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f7f7f7 inset !important;
+    box-shadow: 0 0 0 30px #f7f7f7 inset !important;
+    -webkit-text-fill-color: #333 !important;
+    border: 1px solid #d1d1d1 !important;
 }
 
 /*Copied from Google Official OAuth2 Login Btn https://developers.google.com/identity/branding-guidelines*/
@@ -83,8 +155,7 @@
     transition: background-color .218s, border-color .218s, box-shadow .218s;
     vertical-align: middle;
     white-space: nowrap;
-    width: auto;
-    max-width: 400px;
+    width: 100%;
     min-width: min-content;
     text-decoration: none;
 }

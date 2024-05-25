@@ -44,6 +44,27 @@
                     <span style="display: none;">Sign in with Google</span>
                 </div>
             </a>
+
+            <div class="divider">
+                <div class="line"></div>
+                <span>or</span>
+                <div class="line"></div>
+            </div>
+
+            <form class="form-login" action="{{ href("/login") }}" method="post">
+                <div>
+                    <label for="username">Email address</label>
+                    <input type="text" id="username" name="username" placeholder="Username"/>
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password"/>
+                </div>
+                <button type="submit" class="submitFormLogin">Continue ></button>
+                <input type="hidden"
+                       name="{{ request.getAttribute("_csrf").parameterName }}"
+                       value="{{ request.getAttribute("_csrf").token }}">
+            </form>
         </div>
     </div>
 </main>

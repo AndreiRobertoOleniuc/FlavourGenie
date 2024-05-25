@@ -110,7 +110,7 @@ public class UserServiceTest {
 
         feedbackService = new FeedbackService(stubRecipe, stubFeedback);
         recipeService = new RecipeService(null,null,null, stubRecipe, null);
-        service = new UserService(stubUser,recipeService,feedbackService);
+        service = new UserService(stubUser,recipeService,feedbackService,null);
     }
 
     @Test

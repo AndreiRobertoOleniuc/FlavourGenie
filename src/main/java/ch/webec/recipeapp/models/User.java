@@ -1,20 +1,30 @@
 package ch.webec.recipeapp.models;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
+
+import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "users")
-public class User{
+public class User  implements UserDetails {
     @Id
     private String email;
     private String firstName;
     private String lastName;
     private String picture;
     private String password;
+    @ElementCollection(fetch = EAGER)
+    private Set<String> roles;
 
     public User() {
     }
@@ -26,12 +36,13 @@ public class User{
         this.picture = picture;
     }
 
-    public User(String email, String firstName, String lastName, String picture,String password) {
+    public User(String email, String firstName, String lastName, String picture,String password, Set<String> roles) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
         this.password = password;
+        this.roles = roles;
     }
 
     public String getEmail() {
@@ -66,8 +77,41 @@ public class User{
         this.picture = picture;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                .toList();
+    }
+
+    @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     @Override
