@@ -50,12 +50,12 @@ public class RecipeService {
             var feedbackList = feedbacks.stream().filter(f -> Objects.equals(f.getRecipe().getId(), recipe.getId())).toList();
             int totalRating = feedbackList.stream().mapToInt(Feedback::getRating).sum();
             int averageRating = feedbackList.isEmpty() ? 0 : Math.round((float) totalRating / feedbackList.size());
-            String email = recipe.getUser() != null ? recipe.getUser().getEmail() : "[deleted]";
-            return getRecipeExtended(recipe, email, averageRating);
+            String username = recipe.getUser() != null ? recipe.getUser().getUsername() : "[deleted]";
+            return getRecipeExtended(recipe, username, averageRating);
         }).collect(Collectors.toList());
     }
 
-    private static RecipeExtended getRecipeExtended(Recipe recipe, String email, int averageRating) {
+    private static RecipeExtended getRecipeExtended(Recipe recipe, String username, int averageRating) {
         var recipeExtended = new RecipeExtended(
                 recipe.getRecipeName(),
                 recipe.getIngredients(),
@@ -67,7 +67,7 @@ public class RecipeService {
                 recipe.getInstruction(),
                 recipe.getRecipeImage(),
                 recipe.getUser(),
-                email,
+                username,
                 averageRating
         );
         recipeExtended.setRecipeId(recipe.getId());

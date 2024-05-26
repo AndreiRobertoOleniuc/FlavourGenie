@@ -4,7 +4,6 @@ import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Component;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -32,7 +31,7 @@ public class InitialUserAdder implements CommandLineRunner {
     }
 
     private void addInitialUsers() {
-        if(userRepo.findByEmail("basic") == null) {
+        if(userRepo.findByUsername("basic") == null) {
            LoggerUtil.logInfo("Adding initial user 'basicUser'");
 
            String basicUserPw = basicUserPassword;

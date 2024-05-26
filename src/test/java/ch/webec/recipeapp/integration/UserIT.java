@@ -25,13 +25,13 @@ public class UserIT {
     public UserIT(UserRepository userRepository, RecipeRepository recipeRepository, FeedbackRepository feedbackRepository) {
         recipeService = new RecipeService(null, null, null, recipeRepository, feedbackRepository);
         feedbackService = new FeedbackService(recipeRepository, feedbackRepository);
-        this.userService = new UserService(userRepository, recipeService, feedbackService,null);
+        this.userService = new UserService(userRepository, recipeService, feedbackService);
     }
 
     @Test
     void testDeleteUser() {
         // assert something
-        var user = userService.findUserByEmail("test@test.com");
+        var user = userService.findUserByUsername("test@test.com");
         userService.deleteUser(user);
         var recipes = recipeService.getAllRecipes();
         //Check that no recipe has the user anymore

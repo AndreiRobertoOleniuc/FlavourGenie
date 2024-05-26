@@ -26,6 +26,7 @@
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 .loginCard .divider .line {
@@ -125,7 +126,16 @@ input:-webkit-autofill:active {
     -webkit-text-fill-color: #333 !important;
     border: 1px solid #d1d1d1 !important;
 }
+.oauthButton{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.googleBtn{
+    margin-right: 10px;
+}
 /*Copied from Google Official OAuth2 Login Btn https://developers.google.com/identity/branding-guidelines*/
 
 .gsi-material-button {
@@ -155,7 +165,7 @@ input:-webkit-autofill:active {
     transition: background-color .218s, border-color .218s, box-shadow .218s;
     vertical-align: middle;
     white-space: nowrap;
-    width: 100%;
+    width: 45%;
     min-width: min-content;
     text-decoration: none;
 }

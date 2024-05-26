@@ -32,7 +32,7 @@ public class UserServiceTest {
         //Generated a lot of users
         for (int i = 0; i < 100; i++) {
             User user = new User();
-            user.setEmail("user" + i + "@example.com");
+            user.setUsername("user" + i + "@example.com");
             user.setFirstName("User" + i);
             user.setLastName("LastName" + i);
             user.setPicture("https://example.com/picture" + i + ".jpg");
@@ -68,7 +68,7 @@ public class UserServiceTest {
         var stubFeedback = mock(FeedbackRepository.class);
 
         when(stubRecipe.findAll()).thenReturn(savedRecipes);
-        when(stubUser.findByEmail("User")).thenReturn(null);
+        when(stubUser.findByUsername("User")).thenReturn(null);
 
         when(stubFeedback.findAll()).thenReturn(feedbacks);
         when(stubFeedback.findAlByUser(any(User.class))).thenAnswer((InvocationOnMock invocation) -> {
@@ -105,29 +105,29 @@ public class UserServiceTest {
         });
 
         for (User user : users) {
-            when(stubUser.findByEmail(user.getEmail())).thenReturn(user);
+            when(stubUser.findByUsername(user.getUsername())).thenReturn(user);
         }
 
         feedbackService = new FeedbackService(stubRecipe, stubFeedback);
         recipeService = new RecipeService(null,null,null, stubRecipe, null);
-        service = new UserService(stubUser,recipeService,feedbackService,null);
+        service = new UserService(stubUser,recipeService,feedbackService);
     }
 
     @Test
     void testNotFoundUser() {
-        User user = service.findUserByEmail("User");
+        User user = service.findUserByUsername("User");
         assertNull(user);
     }
 
     @Test
     void testFoundUser() {
-        User user = service.findUserByEmail("user1@example.com");
+        User user = service.findUserByUsername("user1@example.com");
         assertNotNull(user);
     }
 
     @Test
     void testUserProperty() {
-        User user = service.findUserByEmail("user1@example.com");
+        User user = service.findUserByUsername("user1@example.com");
         assertNotNull(user);
         assertEquals("User1", user.getFirstName());
         assertEquals("LastName1", user.getLastName());
@@ -136,14 +136,14 @@ public class UserServiceTest {
 
     @Test
     void testUserEquals() {
-        User user1 = service.findUserByEmail("user1@example.com");
-        User user2 = service.findUserByEmail("user10@example.com");
+        User user1 = service.findUserByUsername("user1@example.com");
+        User user2 = service.findUserByUsername("user10@example.com");
         assertNotEquals(user1, user2);
     }
 
     @Test
     void removeUserFromRecipeWhenDeletingUser() {
-        User user1 = service.findUserByEmail("user1@example.com");
+        User user1 = service.findUserByUsername("user1@example.com");
         assertNotNull(user1);
         service.deleteUser(user1);
         for (Recipe recipe : savedRecipes) {

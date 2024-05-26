@@ -34,7 +34,7 @@ public class RecipeIT {
         assertEquals("image.jpg", recipes.getFirst().getRecipeImage());
 
         //User Fields
-        assertEquals("test@test.com", recipes.getFirst().getUser().getEmail());
+        assertEquals("test@test.com", recipes.getFirst().getUser().getUsername());
         assertEquals("Test", recipes.getFirst().getUser().getFirstName());
         assertEquals("User", recipes.getFirst().getUser().getLastName());
         assertEquals("picture.jpg", recipes.getFirst().getUser().getPicture());
@@ -54,7 +54,7 @@ public class RecipeIT {
     void testDeleteRecipe(){
         var recipes = service.getAllRecipes();
         assertEquals(1, recipes.size());
-        service.deleteRecipe(5);
+        service.deleteRecipe(6);
         recipes = service.getAllRecipes();
         assertEquals(0, recipes.size());
     }

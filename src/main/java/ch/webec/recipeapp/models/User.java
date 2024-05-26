@@ -1,9 +1,6 @@
 package ch.webec.recipeapp.models;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +15,9 @@ import static jakarta.persistence.FetchType.EAGER;
 @Table(name = "users")
 public class User  implements UserDetails {
     @Id
-    private String email;
+    @GeneratedValue
+    private Long id;
+    private String username;
     private String firstName;
     private String lastName;
     private String picture;
@@ -29,15 +28,15 @@ public class User  implements UserDetails {
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, String picture) {
-        this.email = email;
+    public User(String username, String firstName, String lastName, String picture) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
     }
 
-    public User(String email, String firstName, String lastName, String picture,String password, Set<String> roles) {
-        this.email = email;
+    public User(String username, String firstName, String lastName, String picture,String password, Set<String> roles) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.picture = picture;
@@ -45,14 +44,13 @@ public class User  implements UserDetails {
         this.roles = roles;
     }
 
-    public String getEmail() {
-        return email;
+    public Long getId(){
+        return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
-
     public String getFirstName() {
         return firstName;
     }
@@ -91,7 +89,7 @@ public class User  implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
@@ -118,11 +116,11 @@ public class User  implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getPicture(), user.getPicture()) && Objects.equals(getPassword(), user.getPassword());
+        return Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getPicture(), user.getPicture()) && Objects.equals(getPassword(), user.getPassword());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getEmail(), getFirstName(), getLastName(), getPicture(), getPassword());
+        return Objects.hash(getUsername(), getFirstName(), getLastName(), getPicture(), getPassword());
     }
 }
