@@ -1,4 +1,4 @@
-{% extends "shared/layout" %}
+    {% extends "shared/layout" %}
         {% block css %}
         <link rel="stylesheet" href="{{ href("/css/about.css") }}">
         {% endblock %}
@@ -9,6 +9,7 @@
                 <h1>About</h1>
             </header>
             <section>
+                <h2>Our Mission</h2>
                 <p>FlavorGenie is an innovative platform that helps individuals to craft recipes using ingredients they
                     already have at home, with the support of AI technology. Users can also share their creations and
                     receive feedback from the community. Each recipe features a list of ingredients, a brief
@@ -22,5 +23,5 @@
             </section>
         </article>
         {% endblock%}
-{% set user = user %}
+    {% set user = user %}
 

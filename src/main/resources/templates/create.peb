@@ -4,11 +4,11 @@
         {% endblock %}
         {% block title %}Create Recipe | FlavorGenie{% endblock %}
         {% block content %}
-        <main>
+        <div>
             <form class="creation" method="post" action="/create">
                 <h1>Create</h1>
                 <label for="ingredient-input">What ingredients do you have today?</label>
-                <section class="enterIngredient">
+                <div class="enterIngredient">
                     <div class="input-icon">
                         <i class="material-icons" id="add-icon" aria-hidden="true">add</i>
                         <input type="text" id="ingredient-input" placeholder="Add ingredient"
@@ -16,12 +16,12 @@
                     </div>
                     <div id="chips-container" class="chips" role="listbox"></div>
                     <input type="hidden" id="ingredient-list" name="ingredients" value="">
-                </section>
+                </div>
                 <div class="generate">
                     <button class="generate-btn" type="submit" aria-label="Generate Recipe">Generate Recipe</button>
                 </div>
             </form>
-        </main>
+        </div>
         <script src={{ href("/js/inputIngredient.js")}}></script>
         {% endblock %}
     {% set user_picture = user_picture %}

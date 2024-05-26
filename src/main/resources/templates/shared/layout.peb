@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Recipe generator based on ingredients. Helps limit food waste, and allows to try new recipes">
     <meta name="keywords" content="Food, Recipe, LLMs">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ href("/img/apple-touch-icon.png")}}">
