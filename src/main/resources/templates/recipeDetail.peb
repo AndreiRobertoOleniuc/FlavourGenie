@@ -2,7 +2,7 @@
 {# @pebvariable name="currentUserFeedback" type="ch.webec.recipeapp.models.Feedback" #}
 {# @pebvariable name="currentUser" type="ch.webec.recipeapp.models.User" #}
 {# @pebvariable name="creationUser" type="ch.webec.recipeapp.models.User" #}
-{% extends "shared/layout" %}
+    {% extends "shared/layout" %}
     {% block css %}
     <link rel="stylesheet" href="{{ href("/css/recipeDetail.css") }}">
     {% endblock %}
@@ -15,7 +15,7 @@
                 <div class="tooltip-container">
                     <span class="material-icons-outlined more-icon">more_horiz</span>
                     <form class="tooltip" method="post" action="{{ href("/recipe/delete/"+recipe.id) }}">
-                        <button type="submit">
+                        <button type="submit" id="deleteRecipe">
                             <span class="material-icons-outlined delete-icon">delete</span>
                         </button>
                     </form>
