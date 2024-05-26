@@ -326,7 +326,7 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at ch.webec.recipeapp.RecipeappApplication.main(RecipeappApplication.java:10)
+	at ch.webec.recipeapp.RecipeApplication.main(RecipeappApplication.java:10)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
