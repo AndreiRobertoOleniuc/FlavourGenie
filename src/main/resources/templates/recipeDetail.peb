@@ -11,7 +11,7 @@
     <article class="recipeDetail" id="{{ recipe.id }}">
         <header class="recipeHeader">
             <h1>Good choice!</h1>
-            {% if currentUser.email == creationUser.email %}
+            {% if currentUser.username == creationUser.username %}
                 <div class="tooltip-container">
                     <span class="material-icons-outlined more-icon">more_horiz</span>
                     <form class="tooltip" method="post" action="{{ href("/recipe/delete/"+recipe.id) }}">

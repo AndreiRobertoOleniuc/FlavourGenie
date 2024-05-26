@@ -5,6 +5,7 @@ import ch.webec.recipeapp.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -31,12 +32,17 @@ public class GlobalControllerAdvice {
         }
 
         User user = null;
-        if (authentication.getPrincipal() instanceof OidcUser) {
-            OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
-            user = userRepository.findByEmail(oidcUser.getEmail());
-        } else if (authentication.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
-            org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
-            user = userRepository.findByEmail(userDetails.getUsername());
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof OidcUser) {
+                OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
+                user = userRepository.findByUsername(oidcUser.getEmail());
+            } else if (authentication.getPrincipal() instanceof OAuth2User) {
+                OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
+                user = userRepository.findByUsername(oauth2User.getAttribute("login"));
+            } else if (authentication.getPrincipal() instanceof org.springframework.security.core.userdetails.User) {
+                org.springframework.security.core.userdetails.User userDetails = (org.springframework.security.core.userdetails.User) authentication.getPrincipal();
+                user = userRepository.findByUsername(userDetails.getUsername());
+            }
         }
 
         if (user != null) {

@@ -5,23 +5,18 @@ import ch.webec.recipeapp.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-import static java.util.Collections.emptyList;
-
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;  // Add PasswordEncoder here
     private final RecipeService recipeService;
     private final FeedbackService feedbackService;
 
-    public UserService(UserRepository userRepository, RecipeService recipeService, FeedbackService feedbackService, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, RecipeService recipeService, FeedbackService feedbackService) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
         this.recipeService = recipeService;
         this.feedbackService = feedbackService;
     }
@@ -30,8 +25,8 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public User findUserByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public void updateUserFirstName(User user, String firstName) {
@@ -55,11 +50,11 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 }

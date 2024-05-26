@@ -27,10 +27,10 @@ public class FeedbackIT {
     @Test
     void testChangeFeedback(){
         // assert something
-        var recipe = serviceRecipe.getRecipe(5);
+        var recipe = serviceRecipe.getRecipe(6);
         var feedback = serviceFeedback.findFeedbackByUser(recipe.getUser(), recipe);
         assertEquals(5, feedback.getRating());
-        serviceFeedback.addOrUpdateFeedback(5, 3, recipe.getUser());
+        serviceFeedback.addOrUpdateFeedback(6, 3, recipe.getUser());
         var feedbackUpdated = serviceFeedback.findFeedbackByUser(recipe.getUser(), recipe);
         assertEquals(3, feedbackUpdated.getRating());
     }
