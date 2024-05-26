@@ -26,6 +26,7 @@
     align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
 
 .loginCard .divider .line {
@@ -132,7 +133,7 @@ input:-webkit-autofill:active {
     justify-content: space-between;
 }
 
-.oauthButton > a{
+.googleBtn{
     margin-right: 10px;
 }
 /*Copied from Google Official OAuth2 Login Btn https://developers.google.com/identity/branding-guidelines*/

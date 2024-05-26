@@ -29,7 +29,7 @@
                 <span>Welcome back! Please sign in to continue</span>
             </div>
             <div class="oauthButton">
-                <a class="gsi-material-button" href="/oauth2/authorization/google">
+                <a class="gsi-material-button googleBtn" href="/oauth2/authorization/google">
                     <div class="gsi-material-button-state"></div>
                     <div class="gsi-material-button-content-wrapper">
                         <div class="gsi-material-button-icon">
