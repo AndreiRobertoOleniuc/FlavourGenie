@@ -7,7 +7,7 @@
     {% block title %}Recipe | FlavorGenie{% endblock %}
 
     {% block content %}
-    <article class="recipeOverview">
+    <div class="recipeOverview">
         <section class="greeting">
             <h2>Hi, {{ user.firstName }}!</h2>
             <p>Ready to cook?</p>
@@ -69,6 +69,6 @@
                     {% endfor %}
             </ul>
         </section>
-    </article>
+    </div>
     {% endblock %}
 {% set user = user %}
