@@ -13,7 +13,7 @@ public class CreatePage {
     @FindBy(css = "#ingredient-input")
     private WebElement insertIngredient;
 
-    @FindBy(css = "body > main > main > form > div > button")
+    @FindBy(css = ".generate button")
     private WebElement generateButton;
 
     @FindBy(css = "#chips-container  div  span")
