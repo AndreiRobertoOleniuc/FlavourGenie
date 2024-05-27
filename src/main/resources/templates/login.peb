@@ -5,7 +5,7 @@
     <meta name="description"
           content="Recipe generator based on ingredients. Helps limit food waste, and allows to try new recipes">
     <meta name="keywords" content="Food, Recipe, LLMs">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="apple-touch-icon" sizes="180x180" href="{{ href("/img/apple-touch-icon.png")}}">
@@ -66,11 +66,11 @@
             <form class="form-login" action="{{ href("/login") }}" method="post">
                 <div>
                     <label for="username">Email address</label>
-                    <input type="text" id="username" name="username" placeholder="Username"/>
+                    <input type="text" id="username" name="username" placeholder="Username">
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Password"/>
+                    <input type="password" id="password" name="password" placeholder="Password">
                 </div>
                 <button type="submit" class="submitFormLogin">Continue</button>
                 <input type="hidden"
