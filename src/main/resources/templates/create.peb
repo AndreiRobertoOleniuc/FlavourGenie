@@ -18,11 +18,12 @@
                     <input type="hidden" id="ingredient-list" name="ingredients" value="">
                 </div>
                 <div class="generate">
-                    <button class="generate-btn" type="submit" aria-label="Generate Recipe">Generate Recipe</button>
+                    <button class="generate-btn notificationBtn" data-message="We are generating the recipe, hold tight!" type="submit" aria-label="Generate Recipe">Generate Recipe</button>
                 </div>
             </form>
         </div>
         <script src={{ href("/js/inputIngredient.js")}}></script>
+        <script src={{ href("/js/createRecipe.js")}}></script>
         {% endblock %}
     {% set user_picture = user_picture %}
 
