@@ -23,7 +23,7 @@
             {% endif %}
         </header>
         <section class="infoCard">
-            <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}" class="recipeImage"/>
+            <img src="{{ recipe.recipeImage }}" alt="{{ recipe.recipeImageDescription }}" class="recipeImage">
             <div class="metaInfo">
                 <h2>{{ recipe.recipeName }}</h2>
                 <div class="cookingTimeAndDifficulty">
