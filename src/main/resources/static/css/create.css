@@ -67,7 +67,6 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 .chip {
@@ -77,6 +76,7 @@
     border-radius: 4px;
     color: #000000;
     margin-right: 20px;
+    margin-bottom: 10px;
 }
 
 .chip .close {
