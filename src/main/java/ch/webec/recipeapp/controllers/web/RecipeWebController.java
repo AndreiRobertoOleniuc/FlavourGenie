@@ -1,5 +1,6 @@
 package ch.webec.recipeapp.controllers.web;
 
+import ch.webec.recipeapp.errors.InvalidParameterException;
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.FeedbackService;
 import ch.webec.recipeapp.services.RecipeService;
@@ -10,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.view.RedirectView;
+
 
 @Controller
 public class RecipeWebController {
@@ -38,6 +39,9 @@ public class RecipeWebController {
 
     @PostMapping("/create")
     public RedirectView createRecipe(@RequestParam @NotBlank String ingredients, Model model){
+        if(ingredients.isBlank()){
+            throw new InvalidParameterException();
+        }
         User user = (User) model.getAttribute("user");
         var recipe = recipeService.generateRecipe(ingredients, true,user);
         return new RedirectView("/recipe/" + recipe.getId());
