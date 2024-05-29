@@ -43,7 +43,7 @@ public class RecipeService {
         this.feedbackRepo = feedbackRepo;
     }
 
-    public List<RecipeExtended> getAllRecipes(){
+    public List<RecipeExtended> getAllRecipes() {
         var recipes = recipeRepo.findAll();
         var feedbacks = feedbackRepo.findAll();
         return recipes.stream().map(recipe -> {
@@ -77,15 +77,15 @@ public class RecipeService {
     public Recipe generateRecipe(String ingredients, boolean generateImage, User user) {
         String[] ingredientArray = ingredients.split(","); // Split the comma-separated string
         ChatResponse chatResponse = generateRecipeText(ingredientArray);
-        if(generateImage){
+        if (generateImage) {
             var parsedChatResponse = toRecipe(chatResponse, null, user);
             String imageUrlOpenAI = generateImage(parsedChatResponse.getRecipeImageDescription());
             String imageUrl = gcpCloudStorageAPI.uploadImage(imageUrlOpenAI, parsedChatResponse.getRecipeName());
-            Recipe recipe = toRecipe(chatResponse, imageUrl,user);
+            Recipe recipe = toRecipe(chatResponse, imageUrl, user);
             recipeRepo.save(recipe);
             return recipe;
-        }else{
-            Recipe recipe = toRecipe(chatResponse, null,user);
+        } else {
+            Recipe recipe = toRecipe(chatResponse, null, user);
             recipeRepo.save(recipe);
             return recipe;
         }
@@ -110,10 +110,10 @@ public class RecipeService {
         return recipeResponse;
     }
 
-    public String generateImage(String prompt){
+    public String generateImage(String prompt) {
         String imageSize = "1024x1024";
         String imagesModel = "dall-e-3";
-        ImageGenerationResponse imageResponse = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel,  RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
+        ImageGenerationResponse imageResponse = imageGenerationAPI.generateImage(new ImageGenerationRequest(imagesModel, RecipePromptsConfig.getImagePrompt() + prompt, imageSize));
         LoggerUtil.logInfo("Generated Image: ", prompt);
         return imageResponse.data().getFirst().url();
     }
@@ -153,7 +153,10 @@ public class RecipeService {
     }
 
     public Recipe getRecipe(int id) {
-        return recipeRepo.findById(id).orElseThrow(ResourceNotFound::new);
+        return recipeRepo.findById(id).orElseThrow(() -> {
+            LoggerUtil.logError("Recipe not found with id: " + id);
+            return new ResourceNotFound();
+        });
     }
 
     public void deleteFeedbacksByRecipe(Recipe recipe) {
@@ -168,12 +171,12 @@ public class RecipeService {
         recipeRepo.deleteById(id);
     }
 
-    public String getCreatedByForRecipe(Recipe recipe){
+    public String getCreatedByForRecipe(Recipe recipe) {
         if (recipe.getUser() == null) {
             return "[deleted]";
         }
-        var lastname =  recipe.getUser().getLastName() == null ? "" : recipe.getUser().getLastName();
+        var lastname = recipe.getUser().getLastName() == null ? "" : recipe.getUser().getLastName();
         var firstname = recipe.getUser().getFirstName() == null ? "" : recipe.getUser().getFirstName();
-        return firstname + " " +lastname;
+        return firstname + " " + lastname;
     }
 }

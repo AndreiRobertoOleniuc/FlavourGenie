@@ -13,8 +13,4 @@ public class LoggerUtil {
     public static void logError(String message, Object... args) {
         logger.error(message, args);
     }
-
-    public static void logWarn(String message, Object... args) {
-        logger.warn(message, args);
-    }
 }

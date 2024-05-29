@@ -4,6 +4,7 @@ import ch.webec.recipeapp.errors.InvalidParameterException;
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.FeedbackService;
 import ch.webec.recipeapp.services.RecipeService;
+import ch.webec.recipeapp.utils.LoggerUtil;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,29 +27,30 @@ public class RecipeWebController {
     }
 
     @GetMapping("/recipe")
-    public String recipe(Model model){
+    public String recipe(Model model) {
         var recipes = recipeService.getAllRecipes();
         model.addAttribute("recipes", recipes);
         return "recipe";
     }
 
     @GetMapping("/create")
-    public String createRecipe(){
+    public String createRecipe() {
         return "create";
     }
 
     @PostMapping("/create")
-    public RedirectView createRecipe(@RequestParam @NotBlank String ingredients, Model model){
-        if(ingredients.isBlank()){
+    public RedirectView createRecipe(@RequestParam @NotBlank String ingredients, Model model) {
+        if (ingredients.isBlank()) {
+            LoggerUtil.logError("No ingredients provided for recipe.");
             throw new InvalidParameterException();
         }
         User user = (User) model.getAttribute("user");
-        var recipe = recipeService.generateRecipe(ingredients, true,user);
+        var recipe = recipeService.generateRecipe(ingredients, true, user);
         return new RedirectView("/recipe/" + recipe.getId());
     }
 
     @GetMapping("/recipe/{id}")
-    public String recipe(Model model, @PathVariable int id){
+    public String recipe(Model model, @PathVariable int id) {
         var recipe = recipeService.getRecipe(id);
         User user = (User) model.getAttribute("user");
         var currentUserFeedback = feedbackService.findFeedbackByUser(user, recipe);
@@ -61,7 +63,7 @@ public class RecipeWebController {
     }
 
     @PostMapping("/recipe/delete/{id}")
-    public RedirectView deleteRecipe(@PathVariable int id){
+    public RedirectView deleteRecipe(@PathVariable int id) {
         recipeService.deleteRecipe(id);
         return new RedirectView("/recipe");
     }
