@@ -31,15 +31,15 @@ public class InitialUserAdder implements CommandLineRunner {
     }
 
     private void addInitialUsers() {
-        if(userRepo.findByUsername("basic") == null) {
-           LoggerUtil.logInfo("Adding initial user 'basicUser'");
+        if (userRepo.findByUsername("basic") == null) {
+            LoggerUtil.logInfo("Adding initial user 'basicUser'");
 
-           String basicUserPw = basicUserPassword;
-            if(basicUserPassword == null) {
+            String basicUserPw = basicUserPassword;
+            if (basicUserPassword == null) {
                 basicUserPw = generatePassword();
                 LoggerUtil.logInfo("Password for 'basicUser': " + basicUserPw);
             }
-            var basicUser = new User("basic", "Basic","User",
+            var basicUser = new User("basic", "Basic", "User",
                     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
                     passwordEncoder.encode(basicUserPw), emptySet());
             userRepo.save(basicUser);

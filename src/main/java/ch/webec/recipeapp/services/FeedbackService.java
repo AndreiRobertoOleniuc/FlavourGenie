@@ -19,7 +19,7 @@ public class FeedbackService {
         this.feedbackRepo = feedbackRepo;
     }
 
-    public Feedback addOrUpdateFeedback(int recipeId, int rating, User user){
+    public Feedback addOrUpdateFeedback(int recipeId, int rating, User user) {
         Recipe recipe = recipeRepo.findById(recipeId).orElseThrow();
         Feedback feedback = findFeedbackByUser(user, recipe);
         if (feedback != null) {
@@ -31,16 +31,16 @@ public class FeedbackService {
         return feedback;
     }
 
-    public void deleteFeedback(int feedbackId){
+    public void deleteFeedback(int feedbackId) {
         Feedback feedback = feedbackRepo.findById(feedbackId).orElseThrow();
         feedbackRepo.delete(feedback);
     }
 
-    public Feedback findFeedbackByUser(User user, Recipe recipe){
+    public Feedback findFeedbackByUser(User user, Recipe recipe) {
         return feedbackRepo.findByUserAndRecipe(user, recipe);
     }
 
-    public List<Feedback> findAllFeedbackByRecipe(User user){
+    public List<Feedback> findAllFeedbackByRecipe(User user) {
         return feedbackRepo.findAlByUser(user);
     }
 }

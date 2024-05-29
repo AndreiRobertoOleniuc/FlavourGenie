@@ -19,20 +19,20 @@ public class CreatePage {
     @FindBy(css = "#chips-container  div  span")
     private List<WebElement> deleteIngredient;
 
-    public CreatePage(WebDriver driver){
+    public CreatePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void insertIngredient(String ingredient){
+    public void insertIngredient(String ingredient) {
         insertIngredient.sendKeys(ingredient);
         insertIngredient.sendKeys(Keys.RETURN);
     }
 
-    public void clickGenerateButton(){
+    public void clickGenerateButton() {
         generateButton.click();
     }
 
-    public void deleteIngredient(int index){
+    public void deleteIngredient(int index) {
         deleteIngredient.get(index).click();
     }
 }

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Sql(scripts = "/test-data.sql")
 public class FeedbackIT {
     //Test changing a Feedback and how it is presented when then the Recipe gets Requested again
-    private final  FeedbackService serviceFeedback;
+    private final FeedbackService serviceFeedback;
     private final RecipeService serviceRecipe;
 
     @Autowired
@@ -25,7 +25,7 @@ public class FeedbackIT {
     }
 
     @Test
-    void testChangeFeedback(){
+    void testChangeFeedback() {
         // assert something
         var recipe = serviceRecipe.getRecipe(6);
         var feedback = serviceFeedback.findFeedbackByUser(recipe.getUser(), recipe);

@@ -40,7 +40,8 @@ public class Recipe {
         this.user = user;
     }
 
-    protected Recipe(){}
+    protected Recipe() {
+    }
 
     public String getRecipeName() {
         return recipeName;
@@ -89,6 +90,7 @@ public class Recipe {
     public void setRecipeId(Long id) {
         this.id = id;
     }
+
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }

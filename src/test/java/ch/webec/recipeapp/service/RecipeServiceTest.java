@@ -57,14 +57,14 @@ public class RecipeServiceTest {
             }).when(recipeStub).save(recipe);
         }
 
-        service = new RecipeService(null,null,null,recipeStub,feedbackStub);
+        service = new RecipeService(null, null, null, recipeStub, feedbackStub);
     }
 
     private static Recipe getRecipe(int i, User user) {
         Recipe recipe = new Recipe(
                 "Recipe" + i,
                 List.of(new Ingredient("Ingredient one", "100", "g"),
-                        new Ingredient("Ingredient two" , "500", "kg")),
+                        new Ingredient("Ingredient two", "500", "kg")),
                 List.of(
                         new Category("Category one"),
                         new Category("Category two")
@@ -89,7 +89,7 @@ public class RecipeServiceTest {
 
 
     @Test
-    void testToRecipeFromJSON(){
+    void testToRecipeFromJSON() {
         ChatResponse chatResponse = getChatResponse();
         Recipe recipe = service.toRecipe(chatResponse, "https://example.com/image.jpg", user);
         assertEquals("Beef Stir-Fry with Garlic Ginger Sauce", recipe.getRecipeName());
@@ -106,14 +106,14 @@ public class RecipeServiceTest {
 
     private static ChatResponse getChatResponse() {
         String json = "{\"recipeName\":\"Beef Stir-Fry with Garlic Ginger Sauce\",\"ingredients\":[{\"name\":\"Beef\",\"quantity\":\"250\",\"unit\":\"g\"},{\"name\":\"Garlic\",\"quantity\":\"2\",\"unit\":\"cloves\"},{\"name\":\"Ginger\",\"quantity\":\"1\",\"unit\":\"tbsp\"},{\"name\":\"Rice\",\"quantity\":\"1\",\"unit\":\"cup\"},{\"name\":\"Flour\",\"quantity\":\"2\",\"unit\":\"tbsp\"}],\"categories\":[\"Dinner\",\"Asian Cuisine\"],\"recipeDifficulty\":\"medium\",\"description\":\"A delicious and flavorful beef stir-fry with a fragrant garlic ginger sauce, served over a bed of steamed rice.\",\"cookingTime\":\"30 minutes\",\"recipeImageDescription\":\"Beef, Garlic, Ginger, Rice, Flour\",\"instruction\":\"1. Marinate beef slices in a mixture of flour, garlic, and ginger.\\n2. In a hot pan, stir-fry the marinated beef until cooked.\\n3. Prepare a sauce using garlic, ginger, and honey.\\n4. Add the sauce to the cooked beef and simmer for a few minutes.\\n5. Serve the beef stir-fry over steamed rice. Enjoy!\"}";
-        ChatResponse.Usage usage = new ChatResponse.Usage(10,10,10);
+        ChatResponse.Usage usage = new ChatResponse.Usage(10, 10, 10);
         List<ChatResponse.Choice> choices = new ArrayList<>();
         choices.add(
                 new ChatResponse.Choice(0, new Message(
-                        "assistant",json
+                        "assistant", json
                 ))
         );
-        return new ChatResponse(choices,usage);
+        return new ChatResponse(choices, usage);
     }
 
     @Test
@@ -141,7 +141,7 @@ public class RecipeServiceTest {
     @Test
     void testCreatedByRecipe() {
         Recipe recipe = service.getRecipe(0);
-        assertEquals(user.getFirstName() + " " + user.getLastName() , service.getCreatedByForRecipe(recipe));
+        assertEquals(user.getFirstName() + " " + user.getLastName(), service.getCreatedByForRecipe(recipe));
     }
 
 }

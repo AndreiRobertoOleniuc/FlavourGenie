@@ -1,4 +1,5 @@
 package ch.webec.recipeapp.config;
+
 import ch.webec.recipeapp.models.User;
 import ch.webec.recipeapp.services.UserService;
 import org.springframework.context.annotation.Bean;
@@ -23,21 +24,22 @@ public class SecurityConfig {
     public SecurityConfig(UserService userService) {
         this.userService = userService;
     }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         //Copied from Co-Pilot
         OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService = userRequest -> {
             OidcUser oidcUser = new OidcUserService().loadUser(userRequest);
 
-            if(userService.findUserByUsername(oidcUser.getEmail()) != null){
+            if (userService.findUserByUsername(oidcUser.getEmail()) != null) {
                 return oidcUser;
             }
 
             User user = new User(
-                oidcUser.getEmail(),
-                oidcUser.getGivenName(),
-                oidcUser.getFamilyName(),
-                oidcUser.getPicture()
+                    oidcUser.getEmail(),
+                    oidcUser.getGivenName(),
+                    oidcUser.getFamilyName(),
+                    oidcUser.getPicture()
             );
             userService.saveUser(user);
 
@@ -48,7 +50,7 @@ public class SecurityConfig {
             OAuth2User oauth2User = new DefaultOAuth2UserService().loadUser(userRequest);
 
             String username = oauth2User.getAttribute("email") != null ? oauth2User.getAttribute("email") : oauth2User.getAttribute("login");
-            if(userService.findUserByUsername(username) != null){
+            if (userService.findUserByUsername(username) != null) {
                 return oauth2User;
             }
 
@@ -71,7 +73,7 @@ public class SecurityConfig {
                                 .requestMatchers("/502").permitAll()
                                 .requestMatchers("/405").permitAll()
                                 .requestMatchers("/login").permitAll()
-                                .requestMatchers( "/css/**", "/img/**", "/js/**").permitAll()
+                                .requestMatchers("/css/**", "/img/**", "/js/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin

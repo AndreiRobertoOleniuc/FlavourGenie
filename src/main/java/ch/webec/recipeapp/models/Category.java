@@ -15,7 +15,8 @@ public class Category {
         this.category = category;
     }
 
-    protected Category(){}
+    protected Category() {
+    }
 
     public Long getId() {
         return id;
@@ -23,9 +24,5 @@ public class Category {
 
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }

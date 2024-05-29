@@ -16,13 +16,13 @@ public class Login {
     @FindBy(css = "body > main > div > div > form > button")
     private WebElement loginButton;
 
-    public Login(WebDriver driver, int port){
+    public Login(WebDriver driver, int port) {
         driver.navigate().to("http://localhost:" + port + "/login");
         PageFactory.initElements(driver, this);
         this.login();
     }
 
-    private void login(){
+    private void login() {
         usernameInput.sendKeys("basic");
         passwordInput.sendKeys("123456");
         loginButton.click();

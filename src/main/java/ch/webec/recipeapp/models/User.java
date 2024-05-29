@@ -13,7 +13,7 @@ import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Table(name = "users")
-public class User  implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue
     private Long id;
@@ -35,7 +35,7 @@ public class User  implements UserDetails {
         this.picture = picture;
     }
 
-    public User(String username, String firstName, String lastName, String picture,String password, Set<String> roles) {
+    public User(String username, String firstName, String lastName, String picture, String password, Set<String> roles) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,13 +44,14 @@ public class User  implements UserDetails {
         this.roles = roles;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
+
     public String getFirstName() {
         return firstName;
     }

@@ -22,7 +22,7 @@ public class RecipeIT {
     }
 
     @Test
-    void testExpectedRecipeFields(){
+    void testExpectedRecipeFields() {
         var recipes = service.getAllRecipes();
         // assert something
         //Base Fields
@@ -51,7 +51,7 @@ public class RecipeIT {
     }
 
     @Test
-    void testDeleteRecipe(){
+    void testDeleteRecipe() {
         var recipes = service.getAllRecipes();
         assertEquals(1, recipes.size());
         service.deleteRecipe(6);

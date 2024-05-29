@@ -18,12 +18,12 @@ public class ImageGenerationAPI {
                 .build();
     }
 
-    public ImageGenerationResponse generateImage(ImageGenerationRequest request){
+    public ImageGenerationResponse generateImage(ImageGenerationRequest request) {
         return this.webClient.post().uri("/images/generations")
-                        .bodyValue(request)
-                        .retrieve()
-                        .bodyToMono(ImageGenerationResponse.class)
-                        .block();
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(ImageGenerationResponse.class)
+                .block();
     }
 
 }

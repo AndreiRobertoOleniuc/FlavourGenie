@@ -21,7 +21,8 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    protected Ingredient(){}
+    protected Ingredient() {
+    }
 
     public String getName() {
         return name;

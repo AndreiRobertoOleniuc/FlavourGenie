@@ -2,7 +2,7 @@ package ch.webec.recipeapp.models;
 
 import java.util.List;
 
-public class RecipeExtended extends Recipe{
+public class RecipeExtended extends Recipe {
     private String createdBy;
     private int aggregatedFeedback;
 

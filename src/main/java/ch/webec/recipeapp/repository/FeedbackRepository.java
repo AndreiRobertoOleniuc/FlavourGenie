@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface FeedbackRepository extends JpaRepository<Feedback, Integer>{
+public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
     Feedback findByUserAndRecipe(User user, Recipe recipe);
+
     List<Feedback> findAllByRecipe(Recipe recipe);
+
     List<Feedback> findAlByUser(User user);
 }

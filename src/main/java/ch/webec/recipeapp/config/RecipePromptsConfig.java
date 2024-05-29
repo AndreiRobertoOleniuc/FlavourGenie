@@ -31,7 +31,7 @@ public class RecipePromptsConfig {
         return new Message("system", systemPrompt + expectedJSON);
     }
 
-    public static String getImagePrompt(){
+    public static String getImagePrompt() {
         return "You will get a description of a recipe then generate an image from it: \n: ";
     }
 

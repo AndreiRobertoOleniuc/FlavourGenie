@@ -18,12 +18,12 @@ public class ChatCompletionAPI {
                 .build();
     }
 
-    public ChatResponse generateRecipe(ChatRequest chatRequest){
+    public ChatResponse generateRecipe(ChatRequest chatRequest) {
         return this.webClient.post().uri("/chat/completions")
-                        .bodyValue(chatRequest)
-                        .retrieve()
-                        .bodyToMono(ChatResponse.class)
-                        .block();
+                .bodyValue(chatRequest)
+                .retrieve()
+                .bodyToMono(ChatResponse.class)
+                .block();
     }
 
 }

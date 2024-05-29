@@ -40,6 +40,6 @@ public class UserIT {
         });
         //Check that no feedback has the user anymore
         var feedbacks = feedbackService.findAllFeedbackByRecipe(user);
-       assertEquals(0, feedbacks.size());
+        assertEquals(0, feedbacks.size());
     }
 }

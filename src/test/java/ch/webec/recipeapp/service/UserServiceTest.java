@@ -49,7 +49,7 @@ public class UserServiceTest {
                     "CookingTime" + i,
                     "RecipeImageDescription" + i,
                     "Instruction" + i,
-                   "placeholder",
+                    "placeholder",
                     users.get(i)
             );
             recipe.setId((long) i);
@@ -87,7 +87,7 @@ public class UserServiceTest {
             return null;
         }).when(stubFeedback).delete(any(Feedback.class));
 
-        for(Recipe recipe : savedRecipes){
+        for (Recipe recipe : savedRecipes) {
             when(stubRecipe.findAllByUser(recipe.getUser())).thenReturn(savedRecipes);
             when(stubRecipe.findById(recipe.getId().intValue())).thenReturn(java.util.Optional.of(recipe));
         }
@@ -96,9 +96,9 @@ public class UserServiceTest {
             Recipe recipe = (Recipe) invocation.getArguments()[0];
             var savedRecipe = savedRecipes.stream().filter(r -> r.getId().equals(recipe.getId())).findFirst().orElse(null);
             int indexSavedRecipe = savedRecipes.indexOf(savedRecipe);
-            if(savedRecipe != null){
+            if (savedRecipe != null) {
                 savedRecipes.set(indexSavedRecipe, recipe);
-            }else{
+            } else {
                 savedRecipes.add(recipe);
             }
             return recipe;
@@ -109,8 +109,8 @@ public class UserServiceTest {
         }
 
         feedbackService = new FeedbackService(stubRecipe, stubFeedback);
-        recipeService = new RecipeService(null,null,null, stubRecipe, null);
-        service = new UserService(stubUser,recipeService,feedbackService);
+        recipeService = new RecipeService(null, null, null, stubRecipe, null);
+        service = new UserService(stubUser, recipeService, feedbackService);
     }
 
     @Test

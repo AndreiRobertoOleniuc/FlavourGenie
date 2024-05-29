@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUser(User user) {
-        recipeService.getRecipeByUser(user).forEach(recipe ->{
+        recipeService.getRecipeByUser(user).forEach(recipe -> {
             recipe.setUser(null);
             recipeService.updateRecipe(recipe);
         });

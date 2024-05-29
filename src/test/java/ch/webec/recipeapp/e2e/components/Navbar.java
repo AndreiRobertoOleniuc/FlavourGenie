@@ -12,15 +12,15 @@ public class Navbar {
     @FindBy(css = " body > header > nav > ul > li:nth-child(2) > a")
     private WebElement recipeButton;
 
-    public Navbar(WebDriver driver){
+    public Navbar(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickCreateButton(){
+    public void clickCreateButton() {
         createButton.click();
     }
 
-    public void clickRecipeButton(){
+    public void clickRecipeButton() {
         recipeButton.click();
     }
 }

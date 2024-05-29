@@ -21,7 +21,7 @@ public class GlobalControllerAdvice {
     }
 
     @ModelAttribute
-    public void addGlobalAttributes(Model model, Authentication authentication){
+    public void addGlobalAttributes(Model model, Authentication authentication) {
         ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = sra.getRequest();
         String uri = request.getRequestURI();

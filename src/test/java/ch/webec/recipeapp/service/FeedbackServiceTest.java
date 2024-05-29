@@ -30,7 +30,7 @@ public class FeedbackServiceTest {
         recipe = new Recipe(
                 "Recipe",
                 List.of(new Ingredient("Ingredient one", "100", "g"),
-                        new Ingredient("Ingredient two" , "500", "kg")),
+                        new Ingredient("Ingredient two", "500", "kg")),
                 List.of(
                         new Category("Category one"),
                         new Category("Category two")
@@ -54,11 +54,11 @@ public class FeedbackServiceTest {
         when(feedbackStub.findByUserAndRecipe(user, recipe)).thenReturn(feedback);
         doAnswer(invocation -> {
             Feedback feedbackTemp = invocation.getArgument(0);
-            if(feedbacks.stream().anyMatch(f -> f.getRecipe().equals(feedbackTemp.getRecipe()) && f.getUser().equals(feedbackTemp.getUser()))){
+            if (feedbacks.stream().anyMatch(f -> f.getRecipe().equals(feedbackTemp.getRecipe()) && f.getUser().equals(feedbackTemp.getUser()))) {
                 var filteredFeedback = feedbacks.stream().filter(f -> f.getRecipe().equals(feedbackTemp.getRecipe()) && f.getUser().equals(feedbackTemp.getUser())).findFirst();
                 assert filteredFeedback.orElse(null) != null;
                 filteredFeedback.orElse(null).setRating(feedbackTemp.getRating());
-            }else{
+            } else {
                 feedbacks.add(feedbackTemp);
             }
             return feedbackTemp;
@@ -73,7 +73,7 @@ public class FeedbackServiceTest {
     }
 
     @Test
-    void updateMultipleFeedbacks(){
+    void updateMultipleFeedbacks() {
         User user2 = new User(
                 "2",
                 "2",
