@@ -15,9 +15,15 @@
                         </div>
                     </div>
                 </div>
-                <a class="logout-link" href="/logout">
-                    <i class="material-icons">logout</i> Logout
-                </a>
+                <form class="logout-link" action="{{  href("/logout") }}" method="post">
+                    <button class="logout-btn">
+                        <i class="material-icons">logout</i>
+                        <span>Logout</span>
+                    </button>
+                    <input type="hidden"
+                           name="{{ request.getAttribute("_csrf").parameterName }}"
+                           value="{{ request.getAttribute("_csrf").token }}">
+                </form>
             </header>
             <form method="post" action="/profile">
                 <div class="forms">

@@ -11,6 +11,16 @@
     align-items: center;
     text-decoration: none;
     font-size: 16px;
+}
+
+.logout-link .logout-btn{
+    display: flex;
+    flex-direction: row;
+    border: none;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    color: white;
     cursor: pointer;
 }
 

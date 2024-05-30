@@ -66,8 +66,7 @@ public class SecurityConfig {
         };
 
         return http.authorizeHttpRequests(req ->
-                        req.requestMatchers("/api/**").permitAll()
-                                .requestMatchers("/error").permitAll()
+                        req.requestMatchers("/error").permitAll()
                                 .requestMatchers("/404").permitAll()
                                 .requestMatchers("/500").permitAll()
                                 .requestMatchers("/502").permitAll()
@@ -88,7 +87,7 @@ public class SecurityConfig {
                                 .userService(oauth2UserService)
                         )
                 )
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/feedback/**")) // disable CSRF for /feedback endpoint
                 .userDetailsService(userService)
                 .build();
     }
