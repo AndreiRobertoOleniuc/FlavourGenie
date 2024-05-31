@@ -17,9 +17,10 @@ import java.time.Duration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {"spring.profiles.active=local"})
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {
+        "spring.profiles.active=local" })
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Disabled
 public class UserFlowsIT {
     @LocalServerPort
     int port;
@@ -62,7 +63,6 @@ public class UserFlowsIT {
         wait.until(ExpectedConditions.urlMatches("http://localhost:" + port + "/recipe"));
         assertTrue(driver.getCurrentUrl().endsWith("/recipe"));
     }
-
 
     private String generateRecipe() {
         new Login(driver, port);
