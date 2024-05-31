@@ -18,9 +18,5 @@ RUN mvn clean install -DskipTests
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Set the OpenAI API Key and Google Application Credentials as environment variables
-ENV OPENAI_API_KEY=
-ENV GOOGLE_APPLICATION_CREDENTIALS=
-
 # Run the Spring Boot application
 CMD ["sh", "-c", "java -Dspring.profiles.active=local -jar target/*.jar"]
